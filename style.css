@@ -454,28 +454,7 @@
         color: rgba(255, 255, 255, 0.7);
       }
 
-      /* Responsive */
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.5rem;
-        }
 
-        .hero-subtitle {
-          font-size: 1.1rem;
-        }
-
-        .section-title {
-          font-size: 2rem;
-        }
-
-        .search-card {
-          padding: 30px 20px;
-        }
-
-        .stat-number {
-          font-size: 2.5rem;
-        }
-      }
 
       /* Loading Animation */
       .loading {
@@ -529,22 +508,12 @@
 
     .category-grid {
     display: grid;
-     grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1.5rem;
     max-width: 1000px;
     margin: 0 auto;
     }
-    @media (max-width: 768px) {
-    .category-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        }
-    }
 
-    @media (min-width: 769px) and (max-width: 1024px) {
-        .category-grid {
-            grid-template-columns: repeat(3, 1fr); 
-        }
-    }
 
 
     .category-card {
@@ -580,4 +549,153 @@
     object-fit: contain;
     margin-bottom: 0.5rem;
     }
+
+    /* responsive */
+    /* Untuk layar ≤ 768px (Smartphone) */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-top: 100px;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .search-card {
+    padding: 25px 15px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .d-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-hero {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-image svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-content {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+/* Container responsif untuk table */
+.data-card {
+  overflow-x: auto;
+  background: #ffffff10;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Modern look untuk table */
+.table-modern {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  color: white;
+}
+
+.table-modern thead {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-modern th,
+.table-modern td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-modern tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.badge-published {
+  background-color: #10b981;
+  color: white;
+}
+
+.badge-updated {
+  background-color: #f59e0b;
+  color: white;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .data-section .section-title {
+    font-size: 2rem;
+  }
+
+  .data-section .section-subtitle {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .table-modern {
+    font-size: 0.9rem;
+  }
+
+  .table-modern thead {
+    font-size: 0.95rem;
+  }
+
+  .btn-outline-primary {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  .data-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-text {
+    display: none;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .services-section {
+    grid-template-columns: 1fr; 
+    display: grid;
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+
+
+
 
