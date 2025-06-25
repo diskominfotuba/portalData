@@ -390,7 +390,8 @@
 
       /* Footer */
       .footer {
-        background: var(--dark-color);
+        /* background: var(--dark-color); */
+            background: linear-gradient(135deg, #16a085, #16a085);
         color: white;
         padding: 60px 0 30px;
       }
