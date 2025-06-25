@@ -9,3 +9,7 @@ Route::get('/', function () {
 
 Route::get('/search-dataset', [App\Http\Controllers\SearchDatasetController::class, 'index'])
     ->name('search-dataset.index');
+
+Route::get('/show', function () {
+    return view('show');
+});
