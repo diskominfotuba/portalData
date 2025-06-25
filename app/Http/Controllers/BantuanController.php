@@ -11,8 +11,4 @@ class BantuanController extends Controller
        return view('bantuan.index');
     }
 
-    public function tentang()
-    {
-       return view('bantuan.tentang-open-data');
-    }
 }

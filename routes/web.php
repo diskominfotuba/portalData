@@ -17,11 +17,6 @@ Route::get('/search-dataset', [SearchDatasetController::class, 'index'])
 Route::prefix('bantuan')->group(function () {
 
     Route::get('/', [BantuanController::class, 'index'])->name('bantuan.index');
-    Route::get('/open-data/tentang', [BantuanController::class, 'tentang'])->name('bantuan.tentang');
-
-    // Open Data
-    Route::view('/open-data/apa-itu', 'bantuan.open-data.apa-itu')->name('bantuan.open-data.apa-itu');
-    Route::view('/open-data/mekanisme', 'bantuan.open-data.mekanisme')->name('bantuan.open-data.mekanisme');
 
     // Dataset
     Route::view('/dataset/apa-itu', 'bantuan.dataset.apa-itu')->name('bantuan.dataset.apa-itu');
