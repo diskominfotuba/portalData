@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Data Kabupaten Tulang Bawang</title>
+
+  <!-- Stylesheets -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-database me-2"></i>
+        <span class="brand-text">Portal Data Tulang Bawang</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#data">Data Terkini</a></li>
+          <li class="nav-item"><a class="nav-link" href="#data-section">Kategori Data</a></li>
+          <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero text-center text-white bg-success py-5">
+    <div class="container">
+      <h1 class="display-5 mt-5 fw-bold">Dataset Terbuka</h1>
+      <p class="lead">Temukan kumpulan data mentah berupa tabel yang bisa diolah lebih lanjut di sini.</p>
+      <div class="d-flex justify-content-center gap-4 my-4">
+        <div>
+          <strong>3.532</strong><br>
+          <small>Jumlah Dataset</small>
+        </div>
+        <div>
+          <strong>91.991</strong><br>
+          <small>Dataset Kabupaten/Kota</small>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-outline-light me-2">Lacak Permohonan Dataset</button>
+        <button class="btn btn-light text-success fw-semibold">Permohonan Dataset</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Search Section -->
+  <section class="filters py-5 bg-light">
+    <div class="container">
+      <div class="bg-white p-4 rounded shadow-sm">
+
+        <!-- Header -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-12 text-center">
+            <h4 class="fw-bold text-success">
+              <i class="fas fa-database me-2"></i> Daftar Dataset
+            </h4>
+          </div>
+        </div>
+
+        <!-- Search Input -->
+        <div class="row g-4 justify-content-center">
+          <div class="col-12 col-md-9">
+            <label for="searchDataset" class="form-label fw-semibold">Cari Dataset</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+              <input type="text" class="form-control" id="searchDataset" placeholder="Masukkan kata kunci..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="row g-4 justify-content-center mt-3">
+          <div class="col-12 col-md-4 col-lg-3">
+            <label for="filterWilayah" class="form-label fw-semibold">
+              <i class="fas fa-map-marker-alt me-1"></i> Pilih Wilayah
+            </label>
+            <select id="filterWilayah" class="form-select">
+              <option selected disabled>Pilih Wilayah</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <label for="filterOrganisasi" class="form-label fw-semibold">
+              <i class="fas fa-building me-1"></i> Pilih Organisasi
+            </label>
+            <select id="filterOrganisasi" class="form-select">
+              <option selected disabled>Pilih Organisasi</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-4 col-lg-3">
+            <label for="filterTopik" class="form-label fw-semibold">
+              <i class="fas fa-tags me-1"></i> Pilih Topik
+            </label>
+            <select id="filterTopik" class="form-select">
+              <option selected disabled>Pilih Topik</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Dataset List -->
+      <div class="mt-5" id="datasetList"></div>
+      <!-- Pagination -->
+    <nav class="mt-5 d-flex justify-content-center">
+    <ul class="pagination custom-pagination">
+        <li class="page-item disabled">
+        <a class="page-link shadow-sm">← Sebelumnya</a>
+        </li>
+        <li class="page-item active">
+        <a class="page-link shadow-sm" href="#">1</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link shadow-sm" href="#">2</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link shadow-sm" href="#">3</a>
+        </li>
+        <li class="page-item">
+        <a class="page-link shadow-sm" href="#">Berikutnya →</a>
+        </li>
+    </ul>
+    </nav>
+
+    </div>
+  </section>
+
+  <!-- JS Script untuk Menampilkan Dataset -->
+  <script>
+    const datasetList = document.getElementById('datasetList');
+    for (let i = 1; i <= 10; i++) {
+      const item = document.createElement('div');
+      item.className = 'dataset-item shadow-sm mb-3 p-3 d-flex align-items-center rounded border';
+      item.innerHTML = `
+        <img src="https://img.icons8.com/fluency/48/000000/data.png" alt="icon" class="me-3">
+        <div class="dataset-content flex-grow-1">
+          <h5 class="mb-1">Judul Dataset ke-${i}</h5>
+          <div class="meta text-muted small">Provinsi Jawa Barat &middot; Dinas Kesehatan &middot; ${i} hari yang lalu</div>
+          <div class="tag bg-info-subtle text-dark mt-2 d-inline-block px-2 py-1 rounded small">2019–2024</div>
+        </div>
+        <div class="views text-end text-muted small">👁️ ${1000 + i * 10}</div>
+      `;
+      datasetList.appendChild(item);
+    }
+  </script>
+
+  <!-- JS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>

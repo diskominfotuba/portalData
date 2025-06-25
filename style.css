@@ -694,8 +694,120 @@
     padding: 0 15px;
   }
 }
+/* Hero Header */
+.hero {
+  background: linear-gradient(135deg, #00b894, #00cec9);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 0 0 30px 30px;
+}
 
+/* Form styling */
+.filters input,
+.filters select {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  box-shadow: none;
+  transition: border-color 0.2s;
+}
 
+.filters input:focus,
+.filters select:focus {
+  border-color: #00b894;
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0, 184, 148, 0.25);
+}
 
+/* Dataset Section */
 
+.dataset-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  border-left: 5px solid #00b894;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
 
+.dataset-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border-left-color: #00cec9;
+}
+
+.dataset-item img {
+  width: 48px;
+  height: 48px;
+  margin-right: 20px;
+}
+
+.dataset-content {
+  flex: 1;
+}
+
+.dataset-content h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.meta {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+.tag {
+  background-color: #d1f7f5;
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.8em;
+  margin-top: 8px;
+  border-radius: 20px;
+  color: #009688;
+}
+
+.views {
+  font-size: 0.9em;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Pagination Styling */
+.custom-pagination .page-link {
+  color: #00cec9;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  margin: 0 5px;
+  padding: 8px 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-pagination .page-link:hover {
+  background-color: #00cec9;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: #00cec9;
+  color: #fff;
+  border-color: #00cec9;
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+}
+
+.custom-pagination .page-item.disabled .page-link {
+  background-color: #f1f1f1;
+  color: #aaa;
+  border-color: #ddd;
+  pointer-events: none;
+  cursor: not-allowed;
+}
