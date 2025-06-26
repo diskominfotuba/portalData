@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <section class="hero-section">
         <h1 class="hero-title">Portal Data Terpadu <br> Kabupaten Tulang Bawang</h1>
@@ -55,7 +56,7 @@
                         <p class="dataset-desc">Data ini berisikan Data Indeks Standar Pencemar Udara (ISPU), Indeks Standar Pencemar Udara (ISPU) merupakan angka tanpa sat...</p>
                     </div>
                 </div>
-                
+
                 <div class="dataset-card">
                     <div class="dataset-icon">🗑️</div>
                     <div class="dataset-content">
@@ -68,7 +69,7 @@
                         <p class="dataset-desc">Dataset ini berisi mengenai Data Volume Pengangkutan Sampah di Kali Sungai Situ Waduk Tahun 2021</p>
                     </div>
                 </div>
-                
+
                 <div class="dataset-card">
                     <div class="dataset-icon">👥</div>
                     <div class="dataset-content">
@@ -81,7 +82,7 @@
                         <p class="dataset-desc">Jumlah pekerja dan nomor NPIP (Nomor Pendaftaran Perusahaan) pendaftaran kepesertaan BPJS Ketenagakerjaan oleh perusahaan yang...</p>
                     </div>
                 </div>
-                
+
                 <div class="dataset-card">
                     <div class="dataset-icon">💰</div>
                     <div class="dataset-content">

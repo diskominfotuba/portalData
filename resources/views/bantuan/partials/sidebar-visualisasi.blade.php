@@ -7,7 +7,7 @@
   <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
     <div class="accordion-body">
       <ul class="list-unstyled">
-        <li><a href="#apa-itu-visualisasi" class="text-dark text-decoration-none">📊 Apa itu Visualisasi?</a></li>
+        <li><a href="/bantuan/visualisasi/apa-itu" class="text-dark text-decoration-none">📊 Apa itu Visualisasi?</a></li>
         <li><a href="#cara-mencari-visualisasi" class="text-dark text-decoration-none">🔍 Cara Mencari Visualisasi</a></li>
         <li><a href="#cara-mengunduh-visualisasi" class="text-dark text-decoration-none">⬇️ Cara Unduh</a></li>
         <li><a href="#format-unduh-visualisasi" class="text-dark text-decoration-none">🗂️ Format Unduh</a></li>
