@@ -6,7 +6,7 @@ use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\SearchDatasetController;
 use App\Http\Controllers\OrganisasiController;
 
-Route::view('/', 'home.index');
+Route::view('/', 'home.index')->name('home');
 
 // Route untuk Pencarian Dataset
 Route::get('/search-dataset', [SearchDatasetController::class, 'index'])
@@ -26,6 +26,8 @@ Route::prefix('bantuan')->group(function () {
     Route::view('/infografik/apa-itu', 'bantuan.infografik.apa-itu')->name('bantuan.infografik.apa-itu');
 });
 
-Route::get('/show', function () {return view('show');});
+Route::get('/show', function () {
+    return view('show');
+});
 
 Route::get('/show/kinerja-pegawai', [MetabaseController::class, 'showDashboard']);

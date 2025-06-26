@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,7 @@
         }
 
         .header.scrolled {
-            background: rgba(22, 160, 133, 0.95);
+            background: #0d7866;
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
@@ -78,7 +79,8 @@
             transition: all 0.3s ease;
         }
 
-        .nav-menu a:hover, .nav-menu a.active {
+        .nav-menu a:hover,
+        .nav-menu a.active {
             background: rgba(255, 255, 255, 0.2);
         }
 
@@ -91,7 +93,7 @@
             flex-direction: column;
             justify-content: center;
             background: linear-gradient(rgba(22, 160, 133, 0.8), rgba(19, 141, 117, 0.8)),
-                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
             position: relative;
         }
 
@@ -115,7 +117,7 @@
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
 
@@ -130,7 +132,7 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         .search-dropdown {
@@ -178,7 +180,7 @@
             backdrop-filter: blur(10px);
             padding: 2rem;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             gap: 1.5rem;
@@ -187,7 +189,7 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
         .stat-icon {
@@ -201,9 +203,17 @@
             color: white;
         }
 
-        .stat-icon.topics { background: #16a085; }
-        .stat-icon.orgs { background: #138d75; }
-        .stat-icon.datasets { background: #0d7866; }
+        .stat-icon.topics {
+            background: #16a085;
+        }
+
+        .stat-icon.orgs {
+            background: #138d75;
+        }
+
+        .stat-icon.datasets {
+            background: #0d7866;
+        }
 
         .stat-content h3 {
             font-size: 2.5rem;
@@ -256,7 +266,7 @@
 
         .dataset-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .dataset-icon {
@@ -293,9 +303,20 @@
             font-weight: 500;
         }
 
-        .tag.open-data { background: #e3f2fd; color: #1976d2; }
-        .tag.dataset { background: #fff3e0; color: #f57c00; }
-        .tag.excel { background: #f3e5f5; color: #7b1fa2; }
+        .tag.open-data {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tag.dataset {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .tag.excel {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
 
         .dataset-desc {
             color: #666;
@@ -314,14 +335,14 @@
             border-radius: 12px;
             padding: 2rem 1rem;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             border: 1px solid #f0f0f0;
         }
 
         .topic-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .topic-icon {
@@ -481,7 +502,14 @@
             transform: translateY(-2px);
         }
     </style>
+    <!-- Styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    @stack('styles')
 </head>
+
 <body>
     @include('components.navbar')
 
@@ -525,5 +553,10 @@
             }
         });
     </script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    @stack('scripts')
 </body>
+
 </html>

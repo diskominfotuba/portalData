@@ -7,7 +7,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="hero text-center text-white bg-success py-5">
+    <section class="hero text-center text-white bg-portal-primary py-5">
         <div class="container">
             <h1 class="display-5  mt-5 fw-bold">Jumlah Hasil Survei dan Penetapan Lokasi Perumahan dan Permukiman Kumuh</h1>
             <div class="d-flex justify-content-center align-items-center my-4 text-white">

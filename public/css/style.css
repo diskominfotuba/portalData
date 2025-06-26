@@ -101,16 +101,16 @@ body {
 }
 
 /* Hero Section */
-.hero-section {
+/* .hero-section {
     background: var(--gradient-1);
     min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-}
+} */
 
-.hero-section::before {
+/* .hero-section::before {
     content: "";
     position: absolute;
     top: 0;
@@ -119,7 +119,7 @@ body {
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,800 1000,1000"/></svg>');
     background-size: cover;
-}
+} */
 
 .hero-content {
     position: relative;
@@ -164,11 +164,22 @@ body {
     animation: float 6s ease-in-out infinite;
 }
 
+/* Utilities */
+.bg-portal-primary {
+    background: #0d7866;
+}
+
+.bg-portal-secodary {
+    background: rgba(22, 160, 133, 0.95);
+}
+
 @keyframes float {
+
     0%,
     100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -201,7 +212,7 @@ body {
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
 }
 
-.search-input {
+/* .search-input {
     border: 2px solid #e2e8f0;
     border-radius: 15px;
     padding: 15px 20px;
@@ -212,7 +223,7 @@ body {
 .search-input:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
-}
+} */
 
 .btn-search {
     background: var(--gradient-3);
@@ -230,13 +241,13 @@ body {
 }
 
 /* Stats Section */
-.stats-section {
+/* .stats-section {
     padding: 80px 0;
     background: var(--dark-color);
     color: white;
-}
+} */
 
-.stat-card {
+/* .stat-card {
     text-align: center;
     padding: 30px 20px;
     border-radius: 15px;
@@ -244,12 +255,12 @@ body {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
-}
+} */
 
-.stat-card:hover {
+/* .stat-card:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.15);
-}
+} */
 
 .stat-number {
     font-size: 3rem;
@@ -387,11 +398,11 @@ body {
 }
 
 /* Footer */
-.footer {
+/* .footer {
     background: var(--dark-color);
     color: white;
     padding: 60px 0 30px;
-}
+} */
 
 .footer-brand {
     font-size: 1.5rem;
@@ -446,13 +457,13 @@ body {
     color: white;
 }
 
-.footer-bottom {
+/* .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 40px;
     padding-top: 30px;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
-}
+} */
 
 /* Loading Animation */
 .loading {
@@ -465,6 +476,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
