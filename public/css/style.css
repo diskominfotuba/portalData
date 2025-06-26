@@ -592,7 +592,7 @@ body {
     }
 
     .d-flex {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center;
         gap: 10px;
     }
@@ -845,5 +845,93 @@ body {
 
 .organisasi-card {
   border-left: 5px solid #0d6efd;
+}
+
+@media (max-width: 767.98px) {
+  /* Hero Angka Statistik */
+  .hero .d-flex.justify-content-center.gap-5 {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  /* Tombol */
+  .buttons {
+    flex-direction: column;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .buttons .btn {
+    width: 100% !important;
+  }
+
+  /* Dataset Item */
+  .dataset-item {
+    flex-direction: column !important;
+    align-items: center !important;
+    /* text-align: center; */
+  }
+
+  .dataset-item .me-3 {
+    margin-right: 0 !important;
+    margin-bottom: 1rem;
+  }
+
+  .dataset-content {
+    width: 100%;
+  }
+
+  /* Input Group Search */
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group .form-control {
+    width: 100%;
+  }
+
+  .input-group .input-group-text {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Filter Dropdowns */
+  .filters .row.g-4.mt-3 .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Modal Button Gap */
+  .modal .d-flex.gap-3 {
+    flex-direction: column;
+  }
+
+  .modal .btn {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 767.98px) {
+  .pagination-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pagination.custom-pagination {
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+  }
+
+  .pagination.custom-pagination .page-item {
+    flex: 0 0 auto;
+  }
+
+  .pagination.custom-pagination .page-link {
+    min-width: 60px;
+    text-align: center;
+  }
 }
 

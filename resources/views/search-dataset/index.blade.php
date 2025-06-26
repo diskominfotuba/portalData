@@ -66,53 +66,56 @@
       </div>
     </div>
 
-    <!-- Dataset List -->
-    <div class="mt-5" id="datasetList">
-        @for ($i = 1; $i <= 10; $i++)
-            <div class="dataset-item shadow-sm mb-3 p-3 d-flex align-items-start rounded border bg-white">
-            {{-- Icon --}}
-            <div class="me-3">
-                <img src="https://img.icons8.com/office/40/document--v1.png" alt="icon" width="48" />
+
+<!-- Dataset List -->
+<div class="mt-5" id="datasetList">
+  @for ($i = 1; $i <= 10; $i++)
+    <div class="dataset-item shadow-sm mb-3 p-3 d-flex align-items-start rounded border bg-white flex-wrap flex-md-nowrap">
+
+      {{-- Icon --}}
+      <div class="me-3">
+        <img src="https://img.icons8.com/office/40/document--v1.png" alt="icon" width="48" />
+      </div>
+
+      {{-- Konten Dataset --}}
+      <div class="dataset-content flex-grow-1">
+        <h6 class="fw-semibold mb-1 text-dark">
+          Jumlah Hasil Survei dan Penetapan Lokasi Perumahan dan Permukiman Kumuh
+        </h6>
+
+        <div class="d-flex flex-wrap gap-3 align-items-center small text-muted">
+          <div><i class="fas fa-map-marker-alt me-1"></i> Pemerintah Kab Tulang Bawang</div>
+          <div><i class="fas fa-building me-1"></i> Dinas Perumahan dan Kawasan Permukiman</div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 align-items-center mt-2 small dataset-meta">
+            <div class="badge bg-success-subtle text-success border border-success px-2 py-1">
+                <i class="fas fa-check-circle me-1"></i> Tetap
             </div>
-
-            {{-- Konten Dataset --}}
-            <div class="dataset-content flex-grow-1">
-                <h6 class="fw-semibold mb-1 text-dark">
-                Jumlah Hasil Survei dan Penetapan Lokasi Perumahan dan Permukiman Kumuh
-                </h6>
-
-                <div class="d-flex flex-wrap gap-3 align-items-center small text-muted">
-                <div><i class="fas fa-map-marker-alt me-1"></i> Pemerintah Kab Tulang Bawang</div>
-                <div><i class="fas fa-building me-1"></i> Dinas Perumahan dan Kawasan Permukiman</div>
-                </div>
-
-                <div class="d-flex flex-wrap gap-3 align-items-center mt-2 small">
-                <div class="badge bg-success-subtle text-success border border-success px-2 py-1">
-                    <i class="fas fa-check-circle me-1"></i> Tetap
-                </div>
-                <div class="text-muted">
-                    <i class="fas fa-clock me-1"></i> {{ $i }} hari yang lalu
-                </div>
-                </div>
+            <div class="text-muted">
+                <i class="fas fa-clock me-1"></i> {{ $i }} hari yang lalu
             </div>
-
-            {{-- Jumlah View --}}
-            <div class="ms-auto text-muted small d-flex align-items-center">
+            <div class="text-muted">
                 <i class="fas fa-eye me-1"></i> {{ 1000 + $i * 10 }}
             </div>
-            </div>
-        @endfor
+        </div>
+
+      </div>
     </div>
+  @endfor
+</div>
+
+
 
 
     <!-- Pagination -->
     <nav class="mt-5 d-flex justify-content-center">
       <ul class="pagination custom-pagination">
-        <li class="page-item disabled"><a class="page-link shadow-sm">← Sebelumnya</a></li>
+        <li class="page-item disabled"><a class="page-link shadow-sm">←</a></li>
         <li class="page-item active"><a class="page-link shadow-sm" href="#">1</a></li>
         <li class="page-item"><a class="page-link shadow-sm" href="#">2</a></li>
         <li class="page-item"><a class="page-link shadow-sm" href="#">3</a></li>
-        <li class="page-item"><a class="page-link shadow-sm" href="#">Berikutnya →</a></li>
+        <li class="page-item"><a class="page-link shadow-sm" href="#">→</a></li>
       </ul>
     </nav>
   </div>
