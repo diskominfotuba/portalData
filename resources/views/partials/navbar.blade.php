@@ -13,8 +13,10 @@
         <li class="nav-item"><a class="nav-link" href="#data">Data Terkini</a></li>
         <li class="nav-item"><a class="nav-link" href="#data-section">Kategori Data</a></li>
         <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+        <li class="nav-item"><a class="nav-link" href="/organisasi">Organisasi</a></li>
         <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
         <li class="nav-item"><a class="nav-link" href="/bantuan">Bantuan</a></li>
+
       </ul>
     </div>
   </div>
