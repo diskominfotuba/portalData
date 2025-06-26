@@ -1,23 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-5 py-4">
+<div class="container mt-5 pt-5 pb-4">
   <h2 class="fw-bold mb-2">Organisasi</h2>
   <p class="mb-4">
     Dapatkan daftar Perangkat Daerah (PD) yang berkontribusi dalam membangun ekosistem data yang terbuka dan terpercaya melalui publikasi data di Open Data Tulang Bawang.
   </p>
 
-  <!-- Pencarian dan Filter -->
-  <div class="row mb-4">
+    <!-- Pencarian dan Filter -->
+    <div class="row align-items-center mb-4">
     <div class="col-md-8 mb-2">
-      <input type="text" class="form-control" placeholder="🔍 Cari organisasi" disabled>
+        <input type="text" class="form-control" placeholder="🔍 Cari organisasi" name="search" id="searchOrganisasi">
     </div>
     <div class="col-md-4 mb-2">
-      <select class="form-select" disabled>
-        <option selected>Dataset Terbanyak</option>
-      </select>
+        <select class="form-select" name="sort" id="sortOrganisasi">
+        <option value="dataset" selected>📁 Dataset Terbanyak</option>
+        <option value="visualisasi">📊 Visualisasi Terbanyak</option>
+        </select>
     </div>
-  </div>
+    </div>
 
     <!-- Grid Organisasi -->
     <div class="row g-4">
