@@ -89,7 +89,9 @@
                         {{-- Konten Dataset --}}
                         <div class="dataset-content flex-grow-1">
                             <h6 class="fw-semibold mb-1 text-dark">
-                                Jumlah Hasil Survei dan Penetapan Lokasi Perumahan dan Permukiman Kumuh
+                                <a href="{{ route('show') }}" class="text-decoration-none text-dark">
+                                    Jumlah Hasil Survei dan Penetapan Lokasi Perumahan dan Permukiman Kumuh
+                                </a>
                             </h6>
 
                             <div class="d-flex flex-wrap gap-3 align-items-center small text-muted">
