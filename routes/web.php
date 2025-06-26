@@ -28,6 +28,6 @@ Route::prefix('bantuan')->group(function () {
 
 Route::get('/show', function () {
     return view('show');
-});
+})->name('show');
 
 Route::get('/show/kinerja-pegawai', [MetabaseController::class, 'showDashboard']);
