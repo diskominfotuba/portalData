@@ -7,31 +7,11 @@
   <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
     <div class="accordion-body">
       <ul class="list-unstyled">
-        <li>
-          <a href="{{ url('/bantuan/visualisasi/apa-itu') }}" class="text-decoration-none text-dark">
-            📖 Apa itu Visualisasi?
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('/bantuan/visualisasi/cara-mencari') }}" class="text-decoration-none text-dark">
-            🔍 Cara mencari Visualisasi
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('/bantuan/visualisasi/unduh') }}" class="text-decoration-none text-dark">
-            ⬇️ Cara mengunduh Visualisasi
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('/bantuan/visualisasi/format-unduh') }}" class="text-decoration-none text-dark">
-            📂 Format Unduh Visualisasi
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('/bantuan/visualisasi/panduan-kontribusi') }}" class="text-decoration-none text-dark">
-            🤝 Panduan Kontribusi oleh Komunitas
-          </a>
-        </li>
+        <li><a href="#apa-itu-visualisasi" class="text-dark text-decoration-none">📊 Apa itu Visualisasi?</a></li>
+        <li><a href="#cara-mencari-visualisasi" class="text-dark text-decoration-none">🔍 Cara Mencari Visualisasi</a></li>
+        <li><a href="#cara-mengunduh-visualisasi" class="text-dark text-decoration-none">⬇️ Cara Unduh</a></li>
+        <li><a href="#format-unduh-visualisasi" class="text-dark text-decoration-none">🗂️ Format Unduh</a></li>
+        <li><a href="#kontribusi-komunitas" class="text-dark text-decoration-none">🤝 Kontribusi Komunitas</a></li>
       </ul>
     </div>
   </div>

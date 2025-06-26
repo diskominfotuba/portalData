@@ -12,7 +12,7 @@
           <h5 class="mt-4 fw-semibold">Apa itu Dataset?</h5>
           <p>Dataset merupakan kumpulan data mentah berupa tabel yang dapat diolah lebih lanjut.</p>
 
-          <h5 class="mt-4 fw-semibold">Cara Mencari Dataset</h5>
+          <h5 id="cara-mencari" class="mt-4 fw-semibold">Cara Mencari Dataset</h5>
           <p>Anda dapat mencari dataset dengan beberapa cara berikut:</p>
 
           <ol>
@@ -30,7 +30,7 @@
             </li>
           </ol>
 
-          <h5 class="mt-4 fw-semibold">Cara Mengunduh Dataset</h5>
+          <h5 id="cara-mengunduh"  class="mt-4 fw-semibold">Cara Mengunduh Dataset</h5>
           <p>
             Untuk mengunduh dataset:
             <ul>
@@ -41,28 +41,28 @@
             </ul>
           </p>
 
-          <h5 class="mt-4 fw-semibold">Format Unduhan Dataset</h5>
+          <h5 id="format-unduh"  class="mt-4 fw-semibold">Format Unduhan Dataset</h5>
           <ul>
             <li><strong>CSV:</strong> Format sederhana berbasis teks, dipisahkan koma atau titik koma.</li>
             <li><strong>Excel (.xlsx):</strong> Dapat dibuka dengan MS Excel, Google Sheets, atau Numbers.</li>
             <li><strong>API:</strong> Mendukung interoperabilitas antar aplikasi dan integrasi data digital.</li>
           </ul>
 
-          <h5 class="mt-4 fw-semibold">Preview Dataset dalam Bentuk Grafik</h5>
+          <h5  id="format-grafik" class="mt-4 fw-semibold">Preview Dataset dalam Bentuk Grafik</h5>
           <ol>
             <li>Pilih dataset dan buka tab “Grafik”.</li>
             <li>Atur tampilan: Bar/Line Chart, sumbu X/Y, dan pengelompokan data.</li>
             <li>Klik “Pratinjau” untuk melihat grafik sesuai pengaturan.</li>
           </ol>
 
-          <h5 class="mt-4 fw-semibold">Preview Dataset dalam Bentuk Peta</h5>
+          <h5 id="format-peta" class="mt-4 fw-semibold">Preview Dataset dalam Bentuk Peta</h5>
           <ol>
             <li>Pilih dataset dan buka tab “Peta”.</li>
             <li>Pilih kolom untuk spasial (wilayah) dan nilai (value).</li>
             <li>Gunakan grup nilai untuk klasifikasi tambahan, lalu klik “Pratinjau”.</li>
           </ol>
 
-          <h5 class="mt-4 fw-semibold">Permohonan Dataset</h5>
+          <h5 id="format-permohonan" class="mt-4 fw-semibold">Permohonan Dataset</h5>
           <p>Jika dataset tidak tersedia:</p>
           <ul>
             <li>Klik tombol “Permohonan Dataset” di halaman Dataset.</li>
