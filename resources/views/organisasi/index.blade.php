@@ -10,15 +10,16 @@
     <!-- Pencarian dan Filter -->
     <div class="row align-items-center mb-4">
     <div class="col-md-8 mb-2">
-        <input type="text" class="form-control" placeholder="🔍 Cari organisasi" name="search" id="searchOrganisasi">
+        <input type="text" class="form-control form-control-lg" placeholder="🔍 Cari organisasi" name="search" id="searchOrganisasi">
     </div>
     <div class="col-md-4 mb-2">
-        <select class="form-select" name="sort" id="sortOrganisasi">
+        <select class="form-select form-select-lg" name="sort" id="sortOrganisasi">
         <option value="dataset" selected>📁 Dataset Terbanyak</option>
         <option value="visualisasi">📊 Visualisasi Terbanyak</option>
         </select>
     </div>
     </div>
+
 
     <!-- Grid Organisasi -->
     <div class="row g-4">
