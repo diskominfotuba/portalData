@@ -11,10 +11,12 @@
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Open Data</a></li>
+                <li><a href="{{ route('home') }}" class="active">Home</a></li>
+                <li><a href="{{ route('search-dataset.index') }}">Open Data</a></li>
                 <li><a href="#">Statistik Sektoral</a></li>
                 <li><a href="#">SPLD</a></li>
+                <li><a href="{{ route('organisasi.index') }}">Organisasi</a></li>
+                <li><a href="{{ route('bantuan.index') }}">Bantuan</a></li>
             </ul>
         </nav>
     </div>
