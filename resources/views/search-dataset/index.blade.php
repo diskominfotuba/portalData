@@ -82,7 +82,7 @@
                         class="dataset-item shadow-sm mb-3 p-3 d-flex align-items-start rounded border bg-white flex-wrap flex-md-nowrap">
 
                         {{-- Icon --}}
-                        <div class="me-3">
+                        <div class="me-3 p-3 bg-portal-primary rounded d-flex align-items-center justify-content-center">
                             <img src="https://img.icons8.com/office/40/document--v1.png" alt="icon" width="48" />
                         </div>
 
