@@ -18,17 +18,10 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold">Dashboard Monitoring, Kabupaten Tulang Bawang</h2>
-
-
             <div class="row">
                 <div class="col-auto d-flex align-items-center gap-3">
-                   <button class="btn btn-success d-flex align-items-center gap-2 px-3" onclick="toggleFullScreen()" style="white-space: nowrap;">
-    <i class="bi bi-arrows-fullscreen"></i> Full Screen
-</button>
-
-
                     <select class="form-select" id="dropdownSearch" style="min-width: 200px;">
-                        <option selected disabled>-- Cari kategori --</option>
+                        <option value="" selected>-- Tampilkan Semua --</option>
                         <option value="penduduk">Jumlah Penduduk</option>
                         <option value="wilayah">Luas Wilayah</option>
                         <option value="kesehatan">Fasilitas Kesehatan</option>
@@ -110,19 +103,37 @@
 
                         <div class="card glass info-box flip-card-back flip-face">
                             <i class="bi bi-graph-up-arrow icon"></i>
-                            <div class="card-title">Perubahan Populasi</div>
-                            <div class="card-value">+4.5% / tahun</div>
+
+                            <div class="d-flex flex-row justify-content-around align-items-start mt-3 w-100">
+                                <div class="text-center">
+                                    <div class="card-title">Jumlah Pegawai</div>
+                                    <div class="card-value">3.100</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="card-title">Sudah Absen</div>
+                                    <div class="card-value">2.500</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="card-title">Belum Absen</div>
+                                    <div class="card-value">500</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="card-title">Cuti</div>
+                                    <div class="card-value">100</div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="card glass info-box flip-card-third flip-face">
                             <i class="bi bi-bar-chart-line-fill icon"></i>
-                            <div class="card-title">Tren Tahunan</div>
-                            <div class="card-value">Naik Konsisten</div>
+                            <div class="card-title">Jumlah OPD</div>
+                            <div class="card-value">29</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-3" data-kategori="penduduk">
                 <a href="{{ route('dashboard-monitoring.show') }}" style="text-decoration: none; color: inherit">
                     <div class="flip-card card rounded-4">
                         <div class="flip-card-inner">
@@ -147,7 +158,7 @@
             </div>
 
             <!-- Luas Wilayah -->
-            <div class="col-md-3">
+            <div class="col-md-3" data-kategori="wilayah">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <div class="glass info-box flip-card-front flip-face">
@@ -397,8 +408,15 @@
         </div>
     </div>
 
+    <button class="btn btn-success align-items-center gap-2 px-3 btn-sticky" onclick="toggleFullScreen()"
+        style="white-space: nowrap;">
+        <i class="bi bi-arrows-fullscreen"></i>
+    </button>
+
     <script src="{{ asset('assets_monitoring/js/script.js') }}"></script>
     @stack('scripts')
+
+
 
 </body>
 

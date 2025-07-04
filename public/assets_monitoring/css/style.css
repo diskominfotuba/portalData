@@ -164,3 +164,24 @@ body {
   box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.25);
   border-color: #16a085;
 }
+
+/* button fullscreen */
+ .btn-sticky {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 50px;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.btn-sticky:hover {
+  background-color: #218838;
+}
+/* End */
