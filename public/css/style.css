@@ -701,3 +701,23 @@ body {
         padding: 0 15px;
     }
 }
+
+.modal {
+    overflow-y: auto;
+}
+
+.modal-dialog {
+    max-width: 90%;
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        max-height: 80vh;
+    }
+}

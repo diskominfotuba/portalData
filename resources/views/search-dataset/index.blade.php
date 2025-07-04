@@ -157,7 +157,7 @@
 {{-- Modal Form Permohonan Dataset --}}
 <div class="modal fade" id="requestFormModal" tabindex="-1" aria-labelledby="requestFormModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content p-4">
             <div class="modal-header">
                 <h5 class="modal-title">Form Permohonan Dataset</h5>
@@ -165,6 +165,7 @@
             </div>
             <form>
                 <div class="modal-body">
+                    <!-- isi form tetap sama -->
                     <h6>Identitas</h6>
                     <div class="mb-3">
                         <label>Nama</label>
