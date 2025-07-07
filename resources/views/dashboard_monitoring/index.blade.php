@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="{{ asset('assets_monitoring/css/style.css') }}">
     <script src="{{ asset('assets_monitoring/js/script.js') }}"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -20,14 +23,26 @@
             <h2 class="fw-bold">Dashboard Monitoring, Kabupaten Tulang Bawang</h2>
             <div class="row">
                 <div class="col-auto d-flex align-items-center gap-3">
-                    <select class="form-select" id="dropdownSearch" style="min-width: 200px;">
-                        <option value="" selected>-- Tampilkan Semua --</option>
-                        <option value="penduduk">Jumlah Penduduk</option>
-                        <option value="wilayah">Luas Wilayah</option>
-                        <option value="kesehatan">Fasilitas Kesehatan</option>
-                        <option value="umkm">UMKM</option>
-                        <option value="sekolah">Jumlah Sekolah</option>
-                    </select>
+                    <!-- Ganti bagian ini -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-success dropdown-toggle text-white" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter Kategori
+                        </button>
+                        <ul class="dropdown-menu p-3" style="min-width: 250px;">
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="penduduk" checked>
+                                    Jumlah Penduduk</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="wilayah" checked> Luas
+                                    Wilayah</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="kesehatan" checked>
+                                    Fasilitas Kesehatan</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="umkm" checked>
+                                    UMKM</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="sekolah" checked>
+                                    Jumlah Sekolah</label></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
 
@@ -104,7 +119,7 @@
                         <div class="card glass info-box flip-card-back flip-face">
                             <i class="bi bi-graph-up-arrow icon"></i>
 
-                            <div class="d-flex flex-row justify-content-around align-items-start mt-3 w-100">
+                            <div class="d-flex flex-row justify-content-around align-items-start w-100">
                                 <div class="text-center">
                                     <div class="card-title">Jumlah Pegawai</div>
                                     <div class="card-value">3.100</div>
@@ -232,7 +247,7 @@
             </div>
 
             <!-- Kesehatan -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="kesehatan">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <div class="glass info-box flip-card-front flip-face">
@@ -301,7 +316,7 @@
             </div>
 
             <!-- Sekolah -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="sekolah">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <!-- Front -->
@@ -329,7 +344,7 @@
             </div>
 
             <!-- UMKM -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="umkm">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <!-- Front -->
@@ -408,6 +423,34 @@
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.filter-checkbox');
+            const cards = document.querySelectorAll('[data-kategori]');
+
+            function filterCards() {
+                const selected = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                cards.forEach(card => {
+                    const kategori = card.getAttribute('data-kategori');
+                    if (selected.includes(kategori)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterCards);
+            });
+
+            filterCards();
+        });
+    </script>
+
+
     <button class="btn btn-success align-items-center gap-2 px-3 btn-sticky" onclick="toggleFullScreen()"
         style="white-space: nowrap;">
         <i class="bi bi-arrows-fullscreen"></i>
@@ -415,8 +458,6 @@
 
     <script src="{{ asset('assets_monitoring/js/script.js') }}"></script>
     @stack('scripts')
-
-
 
 </body>
 
