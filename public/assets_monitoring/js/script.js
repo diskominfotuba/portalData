@@ -54,6 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }, 3000);
 
+    // --- FLIP CARD ON HOVER MANUAL ---
+flipCards.forEach((card) => {
+    let hoverSide = 0;
+
+    card.addEventListener("mouseenter", () => {
+        // Flip langsung ke sisi berikutnya
+        card.classList.remove("rotate-0", "rotate-1", "rotate-2");
+        hoverSide = (hoverSide + 1) % 3;
+        card.classList.add(`rotate-${hoverSide}`);
+    });
+});
+
+
     // --- FULLSCREEN ---
     window.toggleFullScreen = function () {
         if (!document.fullscreenElement) {

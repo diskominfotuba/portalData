@@ -40,6 +40,18 @@
                                     UMKM</label></li>
                             <li><label><input type="checkbox" class="filter-checkbox me-2" value="sekolah" checked>
                                     Jumlah Sekolah</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="infografis" checked>
+                                    Infografis</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="potensi" checked>
+                                    Potensi Daerah</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="ketahanan-pangan"
+                                        checked> Ketahanan Pangan</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="puskesmas" checked>
+                                    Puskesmas</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="ketahanan" checked>
+                                    Ketahanan</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="aset" checked>
+                                    Aset Daerah</label></li>
                         </ul>
                     </div>
 
@@ -196,7 +208,7 @@
             </div>
 
             <!-- Infografis -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="infografis">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <!-- Front -->
@@ -224,7 +236,7 @@
             </div>
 
             <!-- Potensi Daerah -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="potensi">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <div class="glass info-box flip-card-front flip-face">
@@ -270,7 +282,7 @@
             </div>
 
             <!-- Ketahanan Pangan -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="ketahanan-pangan">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <div class="glass info-box flip-card-front flip-face">
@@ -293,7 +305,7 @@
             </div>
 
             <!-- Puskesmas -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="puskesmas">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <div class="glass info-box flip-card-front flip-face">
@@ -370,7 +382,7 @@
             </div>
 
             <!-- Ketahanan Pangan -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="ketahanan">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <!-- Front -->
@@ -396,7 +408,7 @@
             </div>
 
             <!-- Aset Daerah -->
-            <div class="col-md-4">
+            <div class="col-md-4" data-kategori="aset">
                 <div class="flip-card card rounded-4">
                     <div class="flip-card-inner">
                         <!-- Front -->
