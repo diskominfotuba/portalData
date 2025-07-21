@@ -45,7 +45,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2024 Pemerintah Kabupaten Tulang Bawang. Semua hak dilindungi undang-undang.</p>
+            <p>&copy; {{ date('Y') }} Pemerintah Kabupaten Tulang Bawang. Semua hak dilindungi undang-undang.</p>
             <p>Dikembangkan dengan ❤️ oleh TIM IT Dinas Komunikasi dan Informatika untuk transparansi dan akuntabilitas publik</p>
         </div>
     </div>
