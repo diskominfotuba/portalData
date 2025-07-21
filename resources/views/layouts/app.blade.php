@@ -5,6 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satu Data Kabupaten Tulang Bawang - Portal Data</title>
+        <meta name="title" content="Kabupaten Tulang Bawang" />
+    <meta name="description" content="Portal Data kabupaten Tulang Bawang">
+
+    <meta itemprop="name" content="Kabupaten Tulang Bawang" />
+    <meta itemprop="description" content="Portal Data kabupaten Tulang Bawang" />
+    <meta itemprop="image" content="#" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@" />
+    <meta name="twitter:title" content="Kabupaten Tulang Bawang" />
+    <meta name="twitter:description" content="Portal Data kabupaten Tulang Bawang" />
+    <meta name="twitter:creator" content="@" />
+    
+    <meta name="twitter:image" content="#" />
+    
+    <meta name="twitter:image:src" content="#" />
+    <meta property="og:title" content="Portal Data Kabupaten Tulang Bawang" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tulangbawangkab.go.id" />
+    <meta property="og:image" content="#" />
+    <meta property="og:description" content="Portal Data Kabupaten Tulang Bawang" />
+    <meta property="og:site_name" content="tulangbawangkab.go.id" />
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
     <style>
         * {
             margin: 0;
@@ -92,8 +117,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: linear-gradient(rgba(22, 160, 133, 0.8), rgba(19, 141, 117, 0.8)),
-                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            background: linear-gradient(rgba(22, 160, 133, 0.6), rgba(19, 141, 117, 0.6)),url('../assets/img/bg-pemda.jpg') center/cover;
             position: relative;
         }
 
