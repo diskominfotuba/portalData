@@ -39,32 +39,33 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateTanggalWaktu, 60000);
 
     // --- FLIP CARD ---
-    const flipCards = document.querySelectorAll(".flip-card");
-    let currentCardIndex = 0;
-    let currentSide = 0;
-    setInterval(() => {
-        flipCards.forEach((card) => {
-            card.classList.remove("rotate-0", "rotate-1", "rotate-2");
-        });
-        const activeCard = flipCards[currentCardIndex];
-        activeCard.classList.add(`rotate-${currentSide}`);
-        currentSide = (currentSide + 1) % 3;
-        if (currentSide === 0) {
-            currentCardIndex = (currentCardIndex + 1) % flipCards.length;
-        }
-    }, 3000);
+    // const flipCards = document.querySelectorAll(".flip-card");
+    // let currentCardIndex = 0;
+    // let currentSide = 0;
+    // setInterval(() => {
+    //     flipCards.forEach((card) => {
+    //         card.classList.remove("rotate-0", "rotate-1", "rotate-2");
+    //     });
+    //     const activeCard = flipCards[currentCardIndex];
+    //     activeCard.classList.add(`rotate-${currentSide}`);
+    //     currentSide = (currentSide + 1) % 3;
+    //     if (currentSide === 0) {
+    //         currentCardIndex = (currentCardIndex + 1) % flipCards.length;
+    //     }
+    // }, 3000);
+
 
     // --- FLIP CARD ON HOVER MANUAL ---
-flipCards.forEach((card) => {
-    let hoverSide = 0;
+    // flipCards.forEach((card) => {
+    //     let hoverSide = 0;
 
-    card.addEventListener("mouseenter", () => {
-        // Flip langsung ke sisi berikutnya
-        card.classList.remove("rotate-0", "rotate-1", "rotate-2");
-        hoverSide = (hoverSide + 1) % 3;
-        card.classList.add(`rotate-${hoverSide}`);
-    });
-});
+    //     card.addEventListener("mouseenter", () => {
+    //         // Flip langsung ke sisi berikutnya
+    //         card.classList.remove("rotate-0", "rotate-1", "rotate-2");
+    //         hoverSide = (hoverSide + 1) % 3;
+    //         card.classList.add(`rotate-${hoverSide}`);
+    //     });
+    // });
 
 
     // --- FULLSCREEN ---

@@ -56,6 +56,31 @@
                     </div>
 
                 </div>
+                <div class="col-auto d-flex align-items-center gap-3">
+                    <!-- Ganti bagian ini -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-success dropdown-toggle text-white" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="animation">Animasi otomatis</span>
+                        </button>
+                        <ul class="dropdown-menu p-3" style="min-width: 250px;">
+                            <li>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    onclick="changeAnimation('otomatis')" id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Animasi otomatis
+                                </label>
+                            </li>
+                            <li>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    onclick="changeAnimation('manual')" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Animasi manual
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="d-flex align-items-center gap-3">
@@ -161,7 +186,8 @@
             </div>
 
             <div class="col-md-3" data-kategori="penduduk">
-                <a href="{{ route('dashboard-monitoring.show') }}" style="text-decoration: none; color: inherit">
+                <a href="{{ route('dashboard-monitoring.show') }}" class="card-link"
+                    style="text-decoration: none; color: inherit">
                     <div class="flip-card card rounded-4">
                         <div class="flip-card-inner">
                             <div class="glass info-box flip-card-front flip-face">
@@ -469,6 +495,106 @@
     </button>
 
     <script src="{{ asset('assets_monitoring/js/script.js') }}"></script>
+    {{-- <script type="text/javascript">
+        function changeAnimation(value) {
+            localStorage.setItem('animation', value);
+        };
+    </script> --}}
+
+    <script type="text/javascript">
+        function changeAnimation(value) {
+            localStorage.setItem('animation', value);
+        };
+        const flipCards = document.querySelectorAll(".flip-card");
+        const cardLinks = document.querySelectorAll(".card-link");
+        let currentCardIndex = 0;
+        let autoFlipInterval = null;
+
+        function changeAnimation(value) {
+            localStorage.setItem('animation', value);
+            applyAnimationMode(value);
+            document.getElementById("animation").innerText =
+                value === "otomatis" ? "Animasi otomatis" : "Animasi manual";
+        }
+
+        function applyAnimationMode(mode) {
+            if (autoFlipInterval) {
+                clearInterval(autoFlipInterval);
+                autoFlipInterval = null;
+            }
+
+            flipCards.forEach((card) => {
+                card.classList.remove("rotate-0", "rotate-1", "rotate-2");
+                card.classList.add("rotate-0");
+                card.dataset.side = "0";
+                card.removeEventListener("click", manualFlipHandler);
+            });
+
+            if (mode === "otomatis") {
+                autoFlipInterval = setInterval(() => {
+                    const card = flipCards[currentCardIndex];
+                    let currentSide = parseInt(card.dataset.side || "0");
+                    let nextSide = (currentSide + 1) % 3;
+
+                    card.classList.remove(`rotate-${currentSide}`);
+                    card.classList.add(`rotate-${nextSide}`);
+                    card.dataset.side = nextSide;
+
+                    if (nextSide === 0) {
+                        currentCardIndex = (currentCardIndex + 1) % flipCards.length;
+                    }
+                }, 3000);
+
+                // Aktifkan link saat otomatis
+                cardLinks.forEach(link => {
+                    link.classList.remove("disabled-link");
+                    link.style.pointerEvents = "auto";
+                    link.style.opacity = "1";
+                });
+
+            } else if (mode === "manual") {
+                flipCards.forEach((card) => {
+                    card.addEventListener("click", manualFlipHandler);
+                });
+
+                // Nonaktifkan link saat manual
+                cardLinks.forEach(link => {
+                    link.classList.add("disabled-link");
+                    link.style.pointerEvents = "none";
+                    link.style.opacity = "0.5";
+                });
+            }
+        }
+
+        function manualFlipHandler(e) {
+            // Jika klik dari dalam link, jangan lanjutkan flip
+            if (e.target.closest(".card-link")) {
+                e.preventDefault();
+                return;
+            }
+
+            const card = e.currentTarget;
+            let currentSide = parseInt(card.dataset.side || "0");
+            let nextSide = (currentSide + 1) % 3;
+
+            card.classList.remove(`rotate-${currentSide}`);
+            card.classList.add(`rotate-${nextSide}`);
+            card.dataset.side = nextSide;
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const mode = localStorage.getItem("animation") || "otomatis";
+            document.getElementById("animation").innerText =
+                mode === "otomatis" ? "Animasi otomatis" : "Animasi manual";
+            document.getElementById("flexRadioDefault1").checked = mode === "otomatis";
+            document.getElementById("flexRadioDefault2").checked = mode === "manual";
+
+            applyAnimationMode(mode);
+        });
+    </script>
+
+
+
     @stack('scripts')
 
 </body>
