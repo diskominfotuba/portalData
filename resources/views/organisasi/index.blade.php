@@ -35,7 +35,7 @@
             @for ($i = 1; $i <= 8; $i++)
                 <div class="col-md-3 col-sm-6">
                     <div
-                        class="card h-100 text-center border border-2 border-light-subtle shadow-sm p-3 rounded-4 organisasi-card transition-hover">
+                        class="card h-100 text-center border-2 border-light-subtle shadow-sm p-3 rounded-4 organisasi-card transition-hover">
                         <div class="d-flex justify-content-center align-items-center mb-3" style="height: 100px;">
                             <img src="https://tulangbawangkab.go.id/img/logo/favicon.png"
                                 alt="Logo Organisasi {{ $i }}" class="img-fluid border rounded p-1 bg-white"
