@@ -557,19 +557,19 @@
                     card.addEventListener("click", manualFlipHandler);
                 });
 
-                // Nonaktifkan link saat manual
-                cardLinks.forEach(link => {
-                    link.classList.add("disabled-link");
-                    link.style.pointerEvents = "none";
-                    link.style.opacity = "0.5";
-                });
+                // // Nonaktifkan link saat manual
+                // cardLinks.forEach(link => {
+                //     link.classList.add("disabled-link");
+                //     link.style.pointerEvents = "none";
+                //     link.style.opacity = "0.5";
+                // });
             }
         }
 
         function manualFlipHandler(e) {
             // Jika klik dari dalam link, jangan lanjutkan flip
             if (e.target.closest(".card-link")) {
-                e.preventDefault();
+                // e.preventDefault();
                 return;
             }
 
