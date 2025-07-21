@@ -21,9 +21,9 @@
     <!-- Hero Section -->
     <section class="hero text-center text-white bg-success py-5">
         <div class="container">
-            <p class="mt-5">Beranda / Explorasi Dashboard / <span class="fw-bold">Jumlah Presensi, Izin, Pegawai, OPD dan
+            <p class="mt-5">Beranda / Explorasi Dashboard / <span class="fw-bold">Jumlah Pegawai, OPD dan
                     Lainnya</span></p>
-            <h1 class="display-5 fw-bold">Jumlah Presensi, Izin, Pegawai, OPD dan Lainnya</h1>
+            <h1 class="display-5 fw-bold">Jumlah Pegawai, OPD dan Lainnya</h1>
             <div class="d-flex justify-content-center align-items-center my-4 text-white">
                 <img src="https://ui-avatars.com/api/?name=Badan+Kepegawaian+Pendidikan+dan+Pelatihan&size=48"
                     alt="">

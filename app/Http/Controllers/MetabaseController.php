@@ -9,8 +9,8 @@ class MetabaseController extends Controller
 {
     public function showDashboard()
     {
-        $METABASE_SITE_URL = "http://localhost:3000";
-        $METABASE_SECRET_KEY = "4e85f12a96568fd5a5b5d6386b051b8c2b54cefa4fe5426b14fc9108f8adc2a3";
+        $METABASE_SITE_URL = "https://metabase.tulangbawangkab.go.id";
+        $METABASE_SECRET_KEY = "ab882a228cf481710a6f85abf2e567c852f76412509a68dfc038a1b2a2a2698c";
 
         $payload = [
             "resource" => ["dashboard" => 2],
