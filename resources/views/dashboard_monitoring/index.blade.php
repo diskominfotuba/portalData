@@ -44,6 +44,30 @@
                     </div>
 
                 </div>
+                <div class="col-auto d-flex align-items-center gap-3">
+                    <!-- Ganti bagian ini -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-success dropdown-toggle text-white" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <span id="animation">Animasi otomatis</span>
+                        </button>
+                        <ul class="dropdown-menu p-3" style="min-width: 250px;">
+                            <li>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" onclick="changeAnimation('otomatis')" id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Animasi otomatis
+                                </label>
+                            </li>
+                            <li>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" onclick="changeAnimation('manual')" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                     Animasi manual
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
 
             <div class="d-flex align-items-center gap-3">
@@ -457,6 +481,13 @@
     </button>
 
     <script src="{{ asset('assets_monitoring/js/script.js') }}"></script>
+    <script type="text/javascript">
+
+        function changeAnimation(value) {
+            localStorage.setItem('animation', value);
+        };
+
+    </script>
     @stack('scripts')
 
 </body>
