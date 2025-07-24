@@ -14,6 +14,7 @@
                 <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
                 <li><a href="{{ route('search-dataset.index') }}" class="{{ request()->routeIs('search-dataset.index') ? 'active' : '' }}">Open Data</a></li>
                 <li><a href="{{ route('webgis') }}" class="{{ request()->routeIs('webgis') ? 'active' : '' }}">Open Maps</a></li>
+                <li><a href="{{ route('statistik.index') }}">Statistik Sektoral</a></li>
                 <li><a href="{{ route('organisasi.index') }}" class="{{ request()->routeIs('organisasi.index') ? 'active' : '' }}">Organisasi</a></li>
                 <li><a href="{{ route('bantuan.index') }}" class="{{ request()->routeIs('bantuan.index') ? 'active' : '' }}">Bantuan</a></li>
             </ul>

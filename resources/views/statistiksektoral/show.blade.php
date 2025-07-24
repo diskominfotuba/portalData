@@ -19,7 +19,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="hero text-center text-white bg-success py-5">
+    <section class="hero text-center text-white bg-portal-primary py-5">
         <div class="container">
             <p class="mt-5">Beranda / Explorasi Dashboard / <span class="fw-bold">Jumlah Pegawai, OPD dan
                     Lainnya</span></p>

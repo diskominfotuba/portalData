@@ -39,41 +39,34 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(updateTanggalWaktu, 60000);
 
     // --- FLIP CARD ---
-    const flipCards = document.querySelectorAll(".flip-card");
+    // const flipCards = document.querySelectorAll(".flip-card");
+    // let currentCardIndex = 0;
+    // let currentSide = 0;
+    // setInterval(() => {
+    //     flipCards.forEach((card) => {
+    //         card.classList.remove("rotate-0", "rotate-1", "rotate-2");
+    //     });
+    //     const activeCard = flipCards[currentCardIndex];
+    //     activeCard.classList.add(`rotate-${currentSide}`);
+    //     currentSide = (currentSide + 1) % 3;
+    //     if (currentSide === 0) {
+    //         currentCardIndex = (currentCardIndex + 1) % flipCards.length;
+    //     }
+    // }, 3000);
 
-    // Inisialisasi setiap kartu dengan data-side = 0
-    flipCards.forEach((card) => {
-        card.dataset.side = "0";
-        card.classList.add("rotate-0");
 
-        // Klik manual untuk memutar kartu
-        card.addEventListener("click", () => {
-            let currentSide = parseInt(card.dataset.side);
-            let nextSide = (currentSide + 1) % 3;
+    // --- FLIP CARD ON HOVER MANUAL ---
+    // flipCards.forEach((card) => {
+    //     let hoverSide = 0;
 
-            card.classList.remove(`rotate-${currentSide}`);
-            card.classList.add(`rotate-${nextSide}`);
-            card.dataset.side = nextSide;
-        });
-    });
+    //     card.addEventListener("mouseenter", () => {
+    //         // Flip langsung ke sisi berikutnya
+    //         card.classList.remove("rotate-0", "rotate-1", "rotate-2");
+    //         hoverSide = (hoverSide + 1) % 3;
+    //         card.classList.add(`rotate-${hoverSide}`);
+    //     });
+    // });
 
-    let currentCardIndex = 0;
-
-    // Auto flip setiap 3 detik
-    setInterval(() => {
-        const activeCard = flipCards[currentCardIndex];
-        let currentSide = parseInt(activeCard.dataset.side);
-        let nextSide = (currentSide + 1) % 3;
-
-        activeCard.classList.remove(`rotate-${currentSide}`);
-        activeCard.classList.add(`rotate-${nextSide}`);
-        activeCard.dataset.side = nextSide;
-
-        // Kalau sudah balik ke sisi 0, pindah ke kartu selanjutnya
-        if (nextSide === 0) {
-            currentCardIndex = (currentCardIndex + 1) % flipCards.length;
-        }
-    }, 3000);
 
     // --- FULLSCREEN ---
     window.toggleFullScreen = function () {

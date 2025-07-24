@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MetabaseController;
+use App\Http\Controllers\StatistikSektoralController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\SearchDatasetController;
@@ -33,7 +33,10 @@ Route::prefix('bantuan')->group(function () {
 });
 
 Route::get('/show', function () {
-    return view('show');
+    return view('search-dataset.show');
 })->name('show');
 
-Route::get('/show/kinerja-pegawai', [MetabaseController::class, 'showDashboard']);
+Route::prefix('statistik-sektoral')->group(function () {
+    Route::get('/', [StatistikSektoralController::class, 'index'])->name('statistik.index');
+    Route::get('/show', [StatistikSektoralController::class, 'show'])->name('statistik.show');
+});
