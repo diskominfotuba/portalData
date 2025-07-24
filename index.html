@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Peta Interaktif Pendidikan Kota</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            #map {
+                height: calc(100vh - 50px);
+                width: 100%;
+            }
+            .popup-title {
+                font-weight: bold;
+                font-size: 16px;
+            }
+            .top-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                padding: 10px;
+            }
+            .top-buttons button {
+                padding: 8px 16px;
+                border: none;
+                background: none;
+                color: #007bff;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .top-buttons button:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top-buttons">
+            <button onclick="filterCategory('pendidikan')">Pendidikan</button>
+            <button onclick="filterCategory('peternakan')">Peternakan</button>
+            <button onclick="filterCategory('pertanian')">Pertanian</button>
+        </div>
+
+        <div id="map"></div>
+
+        <script>
+            let map;
+            let currentMarkers = [];
+
+            const data = {
+                pendidikan: [
+                    {
+                        name: "SMAN 1 Tulang Bawang",
+                        lat: -4.217,
+                        lng: 105.2415,
+                        address: "Jl. Lintas Timur",
+                    },
+                    {
+                        name: "SDN 2 Menggala",
+                        lat: -4.219,
+                        lng: 105.243,
+                        address: "Jl. Cendana",
+                    },
+                    {
+                        name: "TK ABA Menggala",
+                        lat: -4.2145,
+                        lng: 105.238,
+                        address: "Jl. Dahlia",
+                    },
+                ],
+                peternakan: [
+                    {
+                        name: "Kandang Sapi Pak Budi",
+                        lat: -4.213,
+                        lng: 105.242,
+                        address: "Kampung Sido Makmur",
+                    },
+                ],
+                pertanian: [
+                    {
+                        name: "Lahan Jagung Kelompok Tani Sejahtera",
+                        lat: -4.215,
+                        lng: 105.239,
+                        address: "Dusun IV",
+                    },
+                ],
+            };
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: { lat: -4.2165, lng: 105.2407 },
+                    zoom: 13,
+                });
+
+                filterCategory("pendidikan");
+            }
+
+            function clearMarkers() {
+                currentMarkers.forEach((marker) => marker.setMap(null));
+                currentMarkers = [];
+            }
+
+            function filterCategory(category) {
+                clearMarkers();
+                data[category].forEach((item) => {
+                    const marker = new google.maps.Marker({
+                        position: { lat: item.lat, lng: item.lng },
+                        map: map,
+                        title: item.name,
+                    });
+
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: `<div class="popup-title">${item.name}</div><div>${item.address}</div>`,
+                    });
+
+                    marker.addListener("click", () => {
+                        infoWindow.open(map, marker);
+                    });
+
+                    currentMarkers.push(marker);
+                });
+            }
+        </script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ciH1POERPcBC50HdxVN3h1Ts2bIWSOQ&callback=initMap"
+            async
+            defer
+        ></script>
+    </body>
+</html>

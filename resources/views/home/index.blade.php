@@ -8,7 +8,7 @@
                 <select class="search-dropdown">
                     <option>Dataset</option>
                     <option>Topik</option>
-                    <option>Organisasi</option>
+                    <option>OPD</option>
                 </select>
                 <input type="text" class="search-input" placeholder="Dashboard, Topik, Organisasi, Dataset apa yang ingin dicari...">
                 <button class="search-btn">🔍</button>
@@ -27,7 +27,7 @@
                 <div class="stat-icon orgs">🏢</div>
                 <div class="stat-content">
                     <h3>53</h3>
-                    <p>Organisasi</p>
+                    <p>OPD</p>
                 </div>
             </div>
             <div class="stat-card">
@@ -53,7 +53,6 @@
                             <span class="tag dataset">Dataset</span>
                             <span class="tag excel">Excel</span>
                         </div>
-                        <p class="dataset-desc">Data ini berisikan Data Indeks Standar Pencemar Udara (ISPU), Indeks Standar Pencemar Udara (ISPU) merupakan angka tanpa sat...</p>
                     </div>
                 </div>
 
@@ -66,7 +65,6 @@
                             <span class="tag dataset">Dataset</span>
                             <span class="tag excel">Excel</span>
                         </div>
-                        <p class="dataset-desc">Dataset ini berisi mengenai Data Volume Pengangkutan Sampah di Kali Sungai Situ Waduk Tahun 2021</p>
                     </div>
                 </div>
 
@@ -79,7 +77,6 @@
                             <span class="tag dataset">Dataset</span>
                             <span class="tag excel">Excel</span>
                         </div>
-                        <p class="dataset-desc">Jumlah pekerja dan nomor NPIP (Nomor Pendaftaran Perusahaan) pendaftaran kepesertaan BPJS Ketenagakerjaan oleh perusahaan yang...</p>
                     </div>
                 </div>
 
@@ -92,7 +89,6 @@
                             <span class="tag dataset">Dataset</span>
                             <span class="tag excel">Excel</span>
                         </div>
-                        <p class="dataset-desc">Dataset ini Berisi Data Perkembangan Harga Eceran di Pasar Wilayah</p>
                     </div>
                 </div>
             </div>
@@ -113,7 +109,7 @@
                 </div>
                 <div class="topic-card">
                     <div class="topic-icon">🏙️</div>
-                    <h5>Penataan Kota</h5>
+                    <h5>Penataan Kabupaten</h5>
                 </div>
                 <div class="topic-card">
                     <div class="topic-icon">🚴</div>
