@@ -12,6 +12,7 @@ Route::get('/dashboard-monitoring', [DashboardController::class, 'index'])->name
 Route::get('/dashboard-monitoring/show', [DashboardController::class, 'show'])->name('dashboard-monitoring.show');
 
 Route::view('/', 'home.index')->name('home');
+Route::view('/webgis', 'webgis.index')->name('webgis');
 
 // Route untuk Pencarian Dataset
 Route::get('/search-dataset', [SearchDatasetController::class, 'index'])

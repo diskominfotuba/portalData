@@ -206,8 +206,8 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
+                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-2 fs-5"
+                            style="z-index: 10; color: inherit;">
                             <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>
@@ -407,8 +407,8 @@
                                 <div class="card-value">78.200 orang</div>
                             </div>
                         </div>
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
+                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-2 fs-5"
+                            style="z-index: 10; color: inherit;">
                             <i class="bi bi-box-arrow-up-right"></i>
                         </a>
                     </div>
