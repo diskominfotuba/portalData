@@ -4,8 +4,15 @@ body {
   color: #fff;
   overflow: hidden;
   padding: 20px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+
+.scroll-container {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 10px;
+    overflow-x: hidden;
 }
 
 .glass {
@@ -184,6 +191,27 @@ body {
 }
 
 .btn-sticky:hover {
+  background-color: #218838;
+}
+/* End */
+
+/* button search */
+ .btn-search {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 50px;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.btn-search:hover {
   background-color: #218838;
 }
 /* End */
