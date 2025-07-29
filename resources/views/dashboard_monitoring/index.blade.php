@@ -205,10 +205,14 @@
                                 <div class="card-value">+12.000 / tahun</div>
                             </div>
                         </div>
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
 
-                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-2 fs-5"
+
+                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
                             style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -234,9 +238,13 @@
                                 <div class="card-value">98/km²</div>
                             </div>
                         </div>
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
 
@@ -267,9 +275,14 @@
                                 <div class="card-value">+3.2% / tahun</div>
                             </div>
                         </div>
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
+                            style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -294,9 +307,13 @@
                                 <div class="card-value">Rp 1,2 Triliun</div>
                             </div>
                         </div>
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -321,9 +338,14 @@
                                 <div class="card-value">1:350</div>
                             </div>
                         </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -348,9 +370,14 @@
                                 <div class="card-value">75%</div>
                             </div>
                         </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -375,9 +402,14 @@
                                 <div class="card-value">92%</div>
                             </div>
                         </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -407,9 +439,14 @@
                                 <div class="card-value">78.200 orang</div>
                             </div>
                         </div>
-                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-2 fs-5"
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
                             style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -437,9 +474,14 @@
                                 <div class="card-value">12.800 unit</div>
                             </div>
                         </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -467,9 +509,14 @@
                                 <div class="card-value">85%</div>
                             </div>
                         </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -497,9 +544,15 @@
                                 <div class="card-value">98.5%</div>
                             </div>
                         </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik
+                            </small>
+                        </div>
+
                         <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-2 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right"></i>
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
                 </div>
@@ -539,7 +592,7 @@
     </script>
 
 
-    <button class="btn btn-success align-items-center gap-2 px-3 btn-search" style="white-space: nowrap;"
+    <button class="btn btn-success align-items-center gap-2 btn-search" style="white-space: nowrap;"
         data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         <i class="bi bi-search"></i>
     </button>
@@ -548,7 +601,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cari Sesuatu</h5>
+                    <h5 class="modal-title tex">Cari Sesuatu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>
@@ -564,7 +617,7 @@
     </div>
 
 
-    <button class="btn btn-success align-items-center gap-2 px-3 btn-sticky" onclick="toggleFullScreen()"
+    <button class="btn btn-success align-items-center gap-2 btn-sticky" onclick="toggleFullScreen()"
         style="white-space: nowrap;">
         <i class="bi bi-arrows-fullscreen"></i>
     </button>
