@@ -47,8 +47,8 @@
                                     Potensi Daerah</label></li>
                             <li><label><input type="checkbox" class="filter-checkbox me-2" value="ketahanan-pangan"
                                         checked> Ketahanan Pangan</label></li>
-                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="puskesmas" checked>
-                                    Puskesmas</label></li>
+                            <li><label><input type="checkbox" class="filter-checkbox me-2" value="parawisata" checked>
+                                    Parawisata</label></li>
                             <li><label><input type="checkbox" class="filter-checkbox me-2" value="ketahanan" checked>
                                     Ketahanan</label></li>
                             <li><label><input type="checkbox" class="filter-checkbox me-2" value="aset" checked>
@@ -186,29 +186,38 @@
                     </div>
                 </div>
 
-                <div class="col-md-3" data-kategori="penduduk">
-                    <div class="flip-card card rounded-4 position-relative">
+
+
+                <!-- Sekolah -->
+                <div class="col-md-3" data-kategori="sekolah">
+                    <div class="flip-card card rounded-4">
                         <div class="flip-card-inner">
+                            <!-- Front -->
                             <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-people-fill icon"></i>
-                                <div class="card-title">Jumlah Penduduk</div>
-                                <div class="card-value">430.630</div>
+                                <i class="bi bi-mortarboard-fill icon"></i>
+                                <div class="card-title">Pendidikan Kabupaten Tulang Bawang</div>
+                                <div class="card-value">Pendidikan</div>
                             </div>
+
+                            <!-- Back -->
                             <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-gender-ambiguous icon"></i>
-                                <div class="card-title">Rasio Gender</div>
-                                <div class="card-value">L: 49% • P: 51%</div>
+                                <i class="bi bi-journal icon"></i>
+                                <div class="card-title">Jumlah Sekolah</div>
+                                <div class="card-value">{{ number_format($jumlah_sekolah_sma, 0, ',', '.') }} orang
+                                </div>
                             </div>
+
+                            <!-- Side 3 -->
                             <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-person-standing icon"></i>
-                                <div class="card-title">Pertumbuhan</div>
-                                <div class="card-value">+12.000 / tahun</div>
+                                <i class="bi bi-people-fill icon"></i>
+                                <div class="card-title">Jumlah Guru</div>
+                                <div class="card-value">{{ number_format($jumlah_guru, 0, ',', '.') }} orang</div>
                             </div>
                         </div>
+
                         <div class="badge-sumber text-center">
                             <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
                         </div>
-
 
                         <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
                             style="z-index: 10; color: inherit;">
@@ -218,8 +227,210 @@
                 </div>
 
 
+                <!-- Kesehatan -->
+                <div class="col-md-3" data-kategori="kesehatan">
+                    <div class="flip-card card rounded-4">
+                        <div class="flip-card-inner">
+                            <div class="glass info-box flip-card-front flip-face">
+                                <i class="bi bi-heart-pulse-fill icon"></i>
+                                <div class="card-title">Kesehatan Kabupaten Tulang Bawang</div>
+                                <div class="card-value">Kesehatan</div>
+                            </div>
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-person-plus-fill icon"></i>
+                                <div class="card-title">Jumlah Tenaga Medis</div>
+                                <div class="card-value">{{ $jumlah_medis }}</div>
+                            </div>
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-activity icon"></i>
+                                <div class="card-title">Jumlah Puskesmas</div>
+                                <div class="card-value">{{ $jumlah_puskesmas }}</div>
+                            </div>
+                        </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('dashboard-monitoring.show') }}"
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pertanian -->
+                <div class="col-md-4" data-kategori="infografis">
+                    <div class="flip-card card rounded-4">
+                        <div class="flip-card-inner">
+                            <!-- Front -->
+                            <div class="glass info-box flip-card-front flip-face">
+                                <i class="bi bi-tree-fill icon"></i>
+                                <div class="card-title">Pertanian Kabupaten Tulang Bawang</div>
+                                <div class="card-value">Pertanian</div>
+                            </div>
+
+                            <!-- Back -->
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-person-workspace icon"></i>
+                                <div class="card-title">Petani Lahan</div>
+                                <div class="card-value">{{ number_format($jumlah_petani_pengguna_lahan, 0, ',', '.') }}
+                                </div>
+                            </div>
+
+                            <!-- Third -->
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-basket-fill icon"></i>
+                                <div class="card-title">Petani Gurem</div>
+                                <div class="card-value">{{ number_format($jumlah_petani_gurem, 0, ',', '.') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
+                            style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- perikanan -->
+                <div class="col-md-4" data-kategori="potensi">
+                    <div class="flip-card card rounded-4">
+                        <div class="flip-card-inner">
+                            <div class="glass info-box flip-card-front flip-face">
+                                <i class="bi bi-building-fill icon"></i>
+                                <div class="card-title">Perikanan Kabupaten Tulang Bawang</div>
+                                <div class="card-value">Perikanan</div>
+                            </div>
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-graph-up icon"></i>
+                                <div class="card-title">Jumlah Rumah Tangga Menangkap Ikan di Laut </div>
+                                <div class="card-value">944</div>
+                            </div>
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-bank icon"></i>
+                                <div class="card-title">Jumlah Budidaya Air Tawar</div>
+                                <div class="card-value">1.176</div>
+                            </div>
+                        </div>
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('dashboard-monitoring.show') }}"
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Perkebunan -->
+                <div class="col-md-4" data-kategori="ketahanan-pangan">
+                    <div class="flip-card card rounded-4">
+                        <div class="flip-card-inner">
+                            <div class="glass info-box flip-card-front flip-face">
+                                <i class="bi bi-basket-fill icon"></i>
+                                <div class="card-title">Perkebunan Kabupaten Tulang Baawang</div>
+                                <div class="card-value">Perkebunan</div>
+                            </div>
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-tree-fill icon"></i>
+                                <div class="card-title">Luas</div>
+                                <div class="card-value">22.611 Ha</div>
+                            </div>
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-droplet-half icon"></i>
+                                <div class="card-title">Produksi</div>
+                                <div class="card-value">17.587 Ton</div>
+                            </div>
+                        </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('dashboard-monitoring.show') }}"
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
+                        </a>
+                    </div>
+                </div>
+
+                  <!-- Parawisata -->
+                <div class="col-md-4" data-kategori="parawisata">
+                    <div class="flip-card card rounded-4">
+                        <div class="flip-card-inner">
+                            <div class="glass info-box flip-card-front flip-face">
+                                <i class="bi bi-geo-alt-fill icon"></i>
+                                <div class="card-title">Pariwisata Kabupaten Tulang Bawang</div>
+                                <div class="card-value">Pariwisata</div>
+                            </div>
+
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-compass-fill icon"></i>
+                                <div class="card-title">Jumlah Perjalanan</div>
+                                <div class="card-value">71.885 Perjalanan</div>
+                            </div>
+
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-building icon"></i>
+                                <div class="card-title">Jumlah Penginapan</div>
+                                <div class="card-value">14 Unit</div>
+                            </div>
+                        </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('dashboard-monitoring.show') }}"
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- UMKM -->
+                <div class="col-md-4" data-kategori="umkm">
+                    <div class="flip-card card rounded-4">
+                        <div class="flip-card-inner">
+                            <!-- Front -->
+                            <div class="glass info-box flip-card-front flip-face">
+                                <i class="bi bi-shop-window icon"></i>
+                                <div class="card-title">UMKM Kabupaten Tulang Bawang</div>
+                                <div class="card-value">UMKM</div>
+                            </div>
+                            <!-- Back -->
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-graph-up-arrow icon"></i>
+                                <div class="card-title">Jumlah UMKM</div>
+                                <div class="card-value">{{ number_format($jumlah_umkm, 0, ',', '.') }}</div>
+                            </div>
+                            <!-- Third -->
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-bag-check icon"></i>
+                                <div class="card-title">Jumlah Pasar</div>
+                                <div class="card-value">{{ number_format($jumlah_pasar, 0, ',', '.') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="badge-sumber text-center">
+                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
+                        </div>
+
+                        <a href="{{ route('dashboard-monitoring.show') }}"
+                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
+                            <i class="bi bi-box-arrow-up-right text-success"></i>
+                        </a>
+                    </div>
+                </div>
+
                 <!-- Luas Wilayah -->
-                <div class="col-md-3" data-kategori="wilayah">
+                <div class="col-md-4" data-kategori="wilayah">
                     <div class="flip-card card rounded-4 position-relative">
                         <div class="flip-card-inner">
                             <div class="glass info-box flip-card-front flip-face">
@@ -250,237 +461,33 @@
 
                 </div>
 
-                <!-- Infografis -->
-                <div class="col-md-4" data-kategori="infografis">
-                    <div class="flip-card card rounded-4">
-                        <div class="flip-card-inner">
-                            <!-- Front -->
-                            <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-tree-fill icon"></i>
-                                <div class="card-title">Pertanian</div>
-                                <div class="card-value">149.420h</div>
-                            </div>
 
-                            <!-- Back -->
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-person-workspace icon"></i>
-                                <div class="card-title">Petani Aktif</div>
-                                <div class="card-value">56.000 orang</div>
-                            </div>
-
-                            <!-- Third -->
-                            <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-basket-fill icon"></i>
-                                <div class="card-title">Pertumbuhan Sektor</div>
-                                <div class="card-value">+3.2% / tahun</div>
-                            </div>
-                        </div>
-
-                        <div class="badge-sumber text-center">
-                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
-                        </div>
-
-                        <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
-                            style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right text-success"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Potensi Daerah -->
-                <div class="col-md-4" data-kategori="potensi">
-                    <div class="flip-card card rounded-4">
+                <div class="col-md-4" data-kategori="penduduk">
+                    <div class="flip-card card rounded-4 position-relative">
                         <div class="flip-card-inner">
                             <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-building-fill icon"></i>
-                                <div class="card-title">Potensi Daerah</div>
-                                <div class="card-value">...</div>
-                            </div>
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-graph-up icon"></i>
-                                <div class="card-title">Sektor Unggulan</div>
-                                <div class="card-value">Pertanian & Perikanan</div>
-                            </div>
-                            <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-bank icon"></i>
-                                <div class="card-title">Potensi Ekonomi</div>
-                                <div class="card-value">Rp 1,2 Triliun</div>
-                            </div>
-                        </div>
-                        <div class="badge-sumber text-center">
-                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
-                        </div>
-
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right text-success"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Kesehatan -->
-                <div class="col-md-4" data-kategori="kesehatan">
-                    <div class="flip-card card rounded-4">
-                        <div class="flip-card-inner">
-                            <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-heart-pulse-fill icon"></i>
-                                <div class="card-title">Fasilitas Kesehatan</div>
-                                <div class="card-value">...</div>
-                            </div>
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-person-plus-fill icon"></i>
-                                <div class="card-title">Tenaga Medis</div>
-                                <div class="card-value">1.230 orang</div>
-                            </div>
-                            <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-activity icon"></i>
-                                <div class="card-title">Rasio Layanan</div>
-                                <div class="card-value">1:350</div>
-                            </div>
-                        </div>
-
-                        <div class="badge-sumber text-center">
-                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
-                        </div>
-
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right text-success"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Ketahanan Pangan -->
-                <div class="col-md-4" data-kategori="ketahanan-pangan">
-                    <div class="flip-card card rounded-4">
-                        <div class="flip-card-inner">
-                            <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-basket-fill icon"></i>
-                                <div class="card-title">Ketahanan Pangan</div>
-                                <div class="card-value">85%</div>
-                            </div>
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-tree-fill icon"></i>
-                                <div class="card-title">Jumlah Pertanian</div>
-                                <div class="card-value">12.340 unit</div>
-                            </div>
-                            <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-droplet-half icon"></i>
-                                <div class="card-title">Irigasi Aktif</div>
-                                <div class="card-value">75%</div>
-                            </div>
-                        </div>
-
-                        <div class="badge-sumber text-center">
-                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
-                        </div>
-
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right text-success"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Puskesmas -->
-                <div class="col-md-4" data-kategori="puskesmas">
-                    <div class="flip-card card rounded-4">
-                        <div class="flip-card-inner">
-                            <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-hospital-fill icon"></i>
-                                <div class="card-title">Jumlah Puskesmas</div>
-                                <div class="card-value">3.000</div>
-                            </div>
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-hospital icon"></i>
-                                <div class="card-title">Faskes Terakreditasi</div>
-                                <div class="card-value">2.100 unit</div>
-                            </div>
-                            <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-patch-check-fill icon"></i>
-                                <div class="card-title">Kepuasan Publik</div>
-                                <div class="card-value">92%</div>
-                            </div>
-                        </div>
-
-                        <div class="badge-sumber text-center">
-                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
-                        </div>
-
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right text-success"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Sekolah -->
-                <div class="col-md-4" data-kategori="sekolah">
-                    <div class="flip-card card rounded-4">
-                        <div class="flip-card-inner">
-                            <!-- Front -->
-                            <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-mortarboard-fill icon"></i>
-                                <div class="card-title">Jumlah Sekolah</div>
-                                <div class="card-value">8.440</div>
-                            </div>
-
-                            <!-- Back -->
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-journal icon"></i>
-                                <div class="card-title">Guru Aktif</div>
-                                <div class="card-value">5.100 orang</div>
-                            </div>
-
-                            <!-- Side 3 -->
-                            <div class="card glass info-box flip-card-third flip-face">
                                 <i class="bi bi-people-fill icon"></i>
-                                <div class="card-title">Siswa Aktif</div>
-                                <div class="card-value">78.200 orang</div>
+                                <div class="card-title">Jumlah Penduduk</div>
+                                <div class="card-value">430.630</div>
+                            </div>
+                            <div class="card glass info-box flip-card-back flip-face">
+                                <i class="bi bi-gender-ambiguous icon"></i>
+                                <div class="card-title">Rasio Gender</div>
+                                <div class="card-value">L: 49% • P: 51%</div>
+                            </div>
+                            <div class="card glass info-box flip-card-third flip-face">
+                                <i class="bi bi-person-standing icon"></i>
+                                <div class="card-title">Pertumbuhan</div>
+                                <div class="card-value">+12.000 / tahun</div>
                             </div>
                         </div>
-
                         <div class="badge-sumber text-center">
                             <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
                         </div>
+
 
                         <a href="{{ route('webgis') }}" class="position-absolute top-0 end-0 p-3 fs-5"
                             style="z-index: 10; color: inherit;">
-                            <i class="bi bi-box-arrow-up-right text-success"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- UMKM -->
-                <div class="col-md-4" data-kategori="umkm">
-                    <div class="flip-card card rounded-4">
-                        <div class="flip-card-inner">
-                            <!-- Front -->
-                            <div class="glass info-box flip-card-front flip-face">
-                                <i class="bi bi-shop-window icon"></i>
-                                <div class="card-title">Jumlah UMKM</div>
-                                <div class="card-value">15.200 unit</div>
-                            </div>
-                            <!-- Back -->
-                            <div class="card glass info-box flip-card-back flip-face">
-                                <i class="bi bi-graph-up-arrow icon"></i>
-                                <div class="card-title">Pertumbuhan UMKM</div>
-                                <div class="card-value">+5.4% / tahun</div>
-                            </div>
-                            <!-- Third -->
-                            <div class="card glass info-box flip-card-third flip-face">
-                                <i class="bi bi-bag-check icon"></i>
-                                <div class="card-title">UMKM Aktif</div>
-                                <div class="card-value">12.800 unit</div>
-                            </div>
-                        </div>
-
-                        <div class="badge-sumber text-center">
-                            <small><i class="bi bi-clipboard-data-fill"></i> Sumber data: Badan Pusat Statistik</small>
-                        </div>
-
-                        <a href="{{ route('dashboard-monitoring.show') }}"
-                            class="position-absolute top-0 end-0 p-3 fs-5" style="z-index: 10; color: inherit;">
                             <i class="bi bi-box-arrow-up-right text-success"></i>
                         </a>
                     </div>
@@ -562,8 +569,6 @@
 
     </div>
 
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const checkboxes = document.querySelectorAll('.filter-checkbox');
@@ -592,29 +597,70 @@
     </script>
 
 
-    <button class="btn btn-success align-items-center gap-2 btn-search" style="white-space: nowrap;"
+    {{-- <button class="btn btn-success align-items-center gap-2 btn-search" style="white-space: nowrap;"
         data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         <i class="bi bi-search"></i>
     </button>
-
     <div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title tex">Cari Sesuatu</h5>
+                    <h5 class="modal-title text-dark">Cari Sesuatu</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" placeholder="Ketik kata kunci..." />
+                    <input type="text" class="form-control" placeholder="Ketik kata kunci..." id="searchInput" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Cari</button>
+                    <button type="button" class="btn btn-primary" onclick="filterCards()"><i
+                            class="bi bi-search"></i></button>
                 </div>
+
             </div>
         </div>
-    </div>
+    </div> --}}
+    <style>
+        #chatbase-bubble-button {
+            position: fixed;
+            bottom: 20px;
+            left: 1rem !important;
+            z-index: 9999;
+        }
+    </style>
+    <script>
+        (function() {
+            if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+                window.chatbase = (...arguments) => {
+                    if (!window.chatbase.q) {
+                        window.chatbase.q = []
+                    }
+                    window.chatbase.q.push(arguments)
+                };
+                window.chatbase = new Proxy(window.chatbase, {
+                    get(target, prop) {
+                        if (prop === "q") {
+                            return target.q
+                        }
+                        return (...args) => target(prop, ...args)
+                    }
+                })
+            }
+            const onLoad = function() {
+                const script = document.createElement("script");
+                script.src = "https://www.chatbase.co/embed.min.js";
+                script.id = "0q06hDvpBaS7FjicgOtnK";
+                script.domain = "www.chatbase.co";
+                document.body.appendChild(script)
+            };
+            if (document.readyState === "complete") {
+                onLoad()
+            } else {
+                window.addEventListener("load", onLoad)
+            }
+        })();
+    </script>
+
 
 
     <button class="btn btn-success align-items-center gap-2 btn-sticky" onclick="toggleFullScreen()"
@@ -722,6 +768,25 @@
     </script>
 
 
+    <script>
+        function filterCards() {
+            const keyword = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('[data-kategori]');
+
+            cards.forEach(card => {
+                const kategori = card.getAttribute('data-kategori').toLowerCase();
+                if (kategori.includes(keyword)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Tutup modal setelah pencarian
+            const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+            modal.hide();
+        }
+    </script>
 
     @stack('scripts')
 
