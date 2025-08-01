@@ -18,4 +18,8 @@ class SekolahController extends Controller
         $data = $this->sekolah->all();
         return $this->success($data, 'Data Sekolah retrieved successfully.');
     }
+
+    public function import() {
+        
+    }
 }
