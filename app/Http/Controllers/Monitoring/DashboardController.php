@@ -33,9 +33,7 @@ class DashboardController extends BaseController
         $jumlah_umkm = 0;
         $jumlah_pasar = 0;
 
-
-
-
+        // Menggunakan Http Client Laravel untuk melakukan request ke API BPS
         $response = Http::get($url);
         $responseKesehatan = Http::get($urlKesehatan);
         $responsePuskesmas = Http::get($urlPuskesmas);
@@ -45,7 +43,7 @@ class DashboardController extends BaseController
 
 
 
-
+        // Proses data Sekolah dan Guru
         if ($response->ok()) {
             $json = $response->json();
             $districtData = $json['data'][1]['data'] ?? [];
@@ -69,6 +67,7 @@ class DashboardController extends BaseController
             }
         }
 
+        // Proses data Kesehatan
         if ($responseKesehatan->ok()) {
             // Ambil HTML yang masih dalam format entity
             $htmlEntity = $responseKesehatan->json()['data']['table'] ?? '';
