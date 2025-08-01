@@ -10,4 +10,5 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('sekolah')->controller(SekolahController::class)->group(function () {
     Route::get('/', 'index')->name('index.sekolah');
     Route::post('/import', 'import')->name('import.sekolah');
+    Route::post('/import-json', 'importJSON')->name('import.sekolah');
 });
