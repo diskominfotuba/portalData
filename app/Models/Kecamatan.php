@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kecamatan extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama_kecataman'];
+    protected $fillable = ['nama_kecamatan'];
 
     public function desas()
     {

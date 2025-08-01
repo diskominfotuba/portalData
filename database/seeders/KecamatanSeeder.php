@@ -29,49 +29,49 @@ class KecamatanSeeder extends Seeder
      */
     public function run(): void
     {
-        $banjarAgung = Kecamatan::create(['nama_kecataman' => 'Banjar Agung']);
+        $banjarAgung = Kecamatan::create(['nama_kecamatan' => 'Banjar Agung']);
         self::$banjarAgungId = $banjarAgung->id;
 
-        $banjarBaru = Kecamatan::create(['nama_kecataman' => 'Banjar Baru']);
+        $banjarBaru = Kecamatan::create(['nama_kecamatan' => 'Banjar Baru']);
         self::$banjarBaruId = $banjarBaru->id;
 
-        $banjarMargo = Kecamatan::create(['nama_kecataman' => 'Banjar Margo']);
+        $banjarMargo = Kecamatan::create(['nama_kecamatan' => 'Banjar Margo']);
         self::$banjarMargoId = $banjarMargo->id;
 
-        $denteTeladas = Kecamatan::create(['nama_kecataman' => 'Dente Teladas']);
+        $denteTeladas = Kecamatan::create(['nama_kecamatan' => 'Dente Teladas']);
         self::$denteTeladasId = $denteTeladas->id;
 
-        $gedungAji = Kecamatan::create(['nama_kecataman' => 'Gedung Aji']);
+        $gedungAji = Kecamatan::create(['nama_kecamatan' => 'Gedung Aji']);
         self::$gedungAjiId = $gedungAji->id;
 
-        $gedungAjiBaru = Kecamatan::create(['nama_kecataman' => 'Gedung Aji Baru']);
+        $gedungAjiBaru = Kecamatan::create(['nama_kecamatan' => 'Gedung Aji Baru']);
         self::$gedungAjiBaruId = $gedungAjiBaru->id;
 
-        $gedungMeneng = Kecamatan::create(['nama_kecataman' => 'Gedung Meneng']);
+        $gedungMeneng = Kecamatan::create(['nama_kecamatan' => 'Gedung Meneng']);
         self::$gedungMenengId = $gedungMeneng->id;
 
-        $menggala = Kecamatan::create(['nama_kecataman' => 'Menggala']);
+        $menggala = Kecamatan::create(['nama_kecamatan' => 'Menggala']);
         self::$menggalaId = $menggala->id;
 
-        $menggalaTimur = Kecamatan::create(['nama_kecataman' => 'Menggala Timur']);
+        $menggalaTimur = Kecamatan::create(['nama_kecamatan' => 'Menggala Timur']);
         self::$menggalaTimurId = $menggalaTimur->id;
 
-        $meraksaAji = Kecamatan::create(['nama_kecataman' => 'Meraksa Aji']);
+        $meraksaAji = Kecamatan::create(['nama_kecamatan' => 'Meraksa Aji']);
         self::$meraksaAjiId = $meraksaAji->id;
 
-        $penawarAji = Kecamatan::create(['nama_kecataman' => 'Penawar Aji']);
+        $penawarAji = Kecamatan::create(['nama_kecamatan' => 'Penawar Aji']);
         self::$penawarAjiId = $penawarAji->id;
 
-        $penawartama = Kecamatan::create(['nama_kecataman' => 'Penawartama']);
+        $penawartama = Kecamatan::create(['nama_kecamatan' => 'Penawartama']);
         self::$penawartamaId = $penawartama->id;
 
-        $rawaPitu = Kecamatan::create(['nama_kecataman' => 'Rawa Pitu']);
+        $rawaPitu = Kecamatan::create(['nama_kecamatan' => 'Rawa Pitu']);
         self::$rawaPituId = $rawaPitu->id;
 
-        $rawajituSelatan = Kecamatan::create(['nama_kecataman' => 'Rawajitu Selatan']);
+        $rawajituSelatan = Kecamatan::create(['nama_kecamatan' => 'Rawajitu Selatan']);
         self::$rawajituSelatanId = $rawajituSelatan->id;
 
-        $rawajituTimur = Kecamatan::create(['nama_kecataman' => 'Rawajitu Timur']);
+        $rawajituTimur = Kecamatan::create(['nama_kecamatan' => 'Rawajitu Timur']);
         self::$rawajituTimurId = $rawajituTimur->id;
     }
 }

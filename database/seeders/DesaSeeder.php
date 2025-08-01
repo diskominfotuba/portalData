@@ -80,7 +80,9 @@ class DesaSeeder extends Seeder
             "BUJUNG TENUK",
             "KAGUNGAN RAHAYU",
             "TIUH TOHOU",
-            "UJUNG GUNUNG ILIR"
+            "UJUNG GUNUNG ILIR",
+            "MENGGALA SELATAN",
+            "MENGGALA TENGAH",
         ];
 
         foreach ($kecamatanMenggala as $desaName) {
@@ -98,7 +100,7 @@ class DesaSeeder extends Seeder
             "BUMI DIPASENA MULYA",
             "BUMI DIPASENA SEJAHTERA",
             "BUMI DIPASENA UTAMA",
-            "BUMI SENTOSA"
+            "BUMI SENTOSA",
         ];
 
         foreach ($kecamatanRawajituTimur as $desaName) {
@@ -199,7 +201,8 @@ class DesaSeeder extends Seeder
             "LINGAI",
             "MENGGALA",
             "SUNGAI LUAR",
-            "TRI MAKMUR JAYA"
+            "TRI MAKMUR JAYA",
+            "LEBUH DALAM KAHURIPAN"
         ];
         foreach ($kecamatanMenggalaTimur as $desaName) {
             Desa::create([

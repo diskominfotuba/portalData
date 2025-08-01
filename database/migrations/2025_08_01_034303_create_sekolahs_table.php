@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('alamat');
             $table->foreignId('desa_id')->constrained('desas');
             $table->foreignId('kecamatan_id')->constrained('kecamatans');
+            // $table->string('desa_id');
+            // $table->string('kecamatan_id');
             $table->timestamps();
         });
     }
