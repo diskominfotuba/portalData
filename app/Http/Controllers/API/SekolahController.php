@@ -31,56 +31,6 @@ class SekolahController extends Controller
         return $this->success($data, 'Data Sekolah retrieved successfully.');
     }
 
-    public function importJson(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'json_file' => 'required|file|mimes:json,txt',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->error('File JSON is required and must be a valid file.', $validator->errors());
-        }
-
-        $file = $request->file('json_file');
-
-        try {
-            $jsonContent = file_get_contents($file->getRealPath());
-            $sekolahs = json_decode($jsonContent, true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                return $this->error('Format JSON tidak valid.', ['errors' => ['json_file' => 'Format JSON tidak valid.']]);
-            }
-        } catch (\Exception $e) {
-            return $this->error('Tidak dapat membaca file.', ['errors' => ['json_file' => 'Tidak dapat membaca file.']]);
-        }
-
-        DB::beginTransaction();
-        try {
-            foreach ($sekolahs as $sekolahData) {
-                if (!isset($sekolahData['npsn'])) {
-                    continue;
-                }
-
-                Sekolah::updateOrCreate(
-                    [
-                        'npsn' => $sekolahData['npsn']
-                    ],
-                    [
-                        'latitude' => $sekolahData['latitude'] ?? null,
-                        'longitude' => $sekolahData['longitude'] ?? null,
-                    ]
-                );
-            }
-
-            DB::commit();
-
-            return $this->success(null, 'Data sekolah berhasil diimpor!');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return $this->error('Terjadi kesalahan saat proses impor ke database.', ['errors' => ['json_file' => 'Terjadi kesalahan saat proses impor ke database.']]);
-        }
-    }
-
     public function import(Request $request)
     {
         $file = $request->file('file');
