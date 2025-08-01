@@ -373,7 +373,7 @@
                             <div class="card glass info-box flip-card-back flip-face">
                                 <i class="bi bi-compass-fill icon"></i>
                                 <div class="card-title">Jumlah Perjalanan</div>
-                                <div class="card-value">71.885 Perjalanan</div>
+                                <div class="card-value">{{ number_format($jumlah_parawisata, 0, ',', '.') }} Perjalanan</div>
                             </div>
 
                             <div class="card glass info-box flip-card-third flip-face">
@@ -468,7 +468,7 @@
                             <div class="glass info-box flip-card-front flip-face">
                                 <i class="bi bi-people-fill icon"></i>
                                 <div class="card-title">Jumlah Penduduk</div>
-                                <div class="card-value">430.630</div>
+                                <div class="card-value">{{ number_format($jumlah_penduduk, 0, ',', '.') }}</div>
                             </div>
                             <div class="card glass info-box flip-card-back flip-face">
                                 <i class="bi bi-gender-ambiguous icon"></i>
@@ -535,20 +535,20 @@
                             <!-- Front -->
                             <div class="glass info-box flip-card-front flip-face">
                                 <i class="bi bi-building icon"></i>
-                                <div class="card-title">Aset Tetap</div>
-                                <div class="card-value">Rp 1,2 T</div>
+                                <div class="card-title">Perlindungan Sosil</div>
+                                <div class="card-value">157.846 Keluarga</div>
                             </div>
                             <!-- Back -->
                             <div class="card glass info-box flip-card-back flip-face">
                                 <i class="bi bi-layers icon"></i>
-                                <div class="card-title">Jumlah Aset</div>
-                                <div class="card-value">6.540 unit</div>
+                                <div class="card-title">Rencana Anggaran</div>
+                                <div class="card-value">Rp.65.801.400.000</div>
                             </div>
                             <!-- Third -->
                             <div class="card glass info-box flip-card-third flip-face">
                                 <i class="bi bi-clipboard-data icon"></i>
-                                <div class="card-title">Tercatat SIMDA</div>
-                                <div class="card-value">98.5%</div>
+                                <div class="card-title">Realisasi Anggaran</div>
+                                <div class="card-value">Rp.63.962.200.000</div>
                             </div>
                         </div>
 
