@@ -627,6 +627,9 @@
             left: 1rem !important;
             z-index: 9999;
         }
+        #chatbase-bubble-window{
+            left: 1rem !important;
+        }
     </style>
     <script>
         (function() {
