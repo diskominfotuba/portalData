@@ -150,3 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
     filterCards("");
     // --- TOMBOL KEMBALI KE ATAS ---
 });
+
+
+  function showSearchModal() {
+    const modal = new bootstrap.Modal(document.getElementById('searchModal'));
+    modal.show();
+  }
