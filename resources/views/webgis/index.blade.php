@@ -1413,7 +1413,9 @@
         // Load semua GeoJSON dengan warna berbeda
         geojsonFiles.forEach((file, index) => {
             const color = colors[index % colors.length]; 
-            loadGeoJSON(`/storage/${file}`, color);
+            // loadGeoJSON(`/public/${file}`, color);
+            loadGeoJSON(`/${file}`, color);
+
         });
         </script>
         <!-- End GEO JSON -->
