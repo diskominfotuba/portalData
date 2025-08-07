@@ -3,7 +3,7 @@
     <head>
         <title>Peta Interaktif Pendidikan Kota</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -448,7 +448,7 @@
                     Mode Layar Penuh
                 </div>
             </button>
-            <div class="header">http://10.10.10.70:9001/
+            <div class="header">
                 <div class="header-content">
                     <div class="search-container">
                         <div class="search-box">
