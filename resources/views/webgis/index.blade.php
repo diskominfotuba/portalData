@@ -432,6 +432,7 @@
             .leaflet-popup-tip {
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
             }
+            
         </style>
     </head>
     <body>
@@ -447,7 +448,7 @@
                     Mode Layar Penuh
                 </div>
             </button>
-            <div class="header">
+            <div class="header">http://10.10.10.70:9001/
                 <div class="header-content">
                     <div class="search-container">
                         <div class="search-box">
@@ -1349,5 +1350,72 @@
 
             // Map interaction effects removed to prevent icon changes during zoom
         </script>
+
+        <!-- start GEO JSON -->
+        <script>
+        // Fungsi load GeoJSON
+        async function loadGeoJSON(url, color = 'blue') {
+            const response = await fetch(url);
+            const data = await response.json();
+
+            L.geoJSON(data, {
+                style: {
+                    color: color,
+                    weight: 1,
+                    fillOpacity: 0.3
+                },
+
+                onEachFeature: function (feature, layer) {
+                    if (feature.properties) {
+                        const props = feature.properties;
+
+                        const popupContent = `
+                            <div style="font-size: 13px; line-height: 1.5;">
+                                <strong>📍 Kecamatan:</strong> ${props.district || '-'}<br>
+                                <strong>📌 Desa/Kelurahan:</strong> ${props.village || '-'}<br>
+                                <strong>🗺️ Kabupaten:</strong> ${props.regency || '-'}<br>
+                                <strong>🌐 Provinsi:</strong> ${props.province || '-'}<br>
+                                <strong>📅 Sejak:</strong> ${props.valid_on || '-'}<br>
+                                <strong>🔗 Sumber:</strong> ${props.source || '-'}
+                            </div>
+                        `;
+                        layer.bindPopup(popupContent);
+                    }
+                }
+                
+            }).addTo(map);
+        }
+
+        const geojsonFiles = [
+            'geojson/id1808030_banjar_agung.geojson',
+            'geojson/id1808031_banjar_margo.geojson',
+            'geojson/id1808032_banjar_baru.geojson',
+            'geojson/id1808040_gedung_aji.geojson',
+            'geojson/id1808041_penawar_aji.geojson',
+            'geojson/id1808042_meraksa_aji.geojson',
+            'geojson/id1808050_menggala.geojson',
+            'geojson/id1808051_penawar_tama.geojson',
+            'geojson/id1808052_rawajitu_selatan.geojson',
+            'geojson/id1808053_gedung_meneng.geojson',
+            'geojson/id1808054_rawajitu_timur.geojson',
+            'geojson/id1808055_rawa_pitu.geojson',
+            'geojson/id1808056_gedung_aji_baru.geojson',
+            'geojson/id1808057_dente_teladas.geojson',
+            'geojson/id1808058_menggala_timur.geojson'
+        ];
+
+        const colors = [
+            'red', 'blue', 'green', 'orange', 'purple',
+            'brown', 'cyan', 'magenta', 'lime', 'yellow',
+            'pink', 'gray', 'teal', 'indigo', 'black'
+        ];
+
+        // Load semua GeoJSON dengan warna berbeda
+        geojsonFiles.forEach((file, index) => {
+            const color = colors[index % colors.length]; 
+            loadGeoJSON(`/storage/${file}`, color);
+        });
+        </script>
+        <!-- End GEO JSON -->
     </body>
 </html>
