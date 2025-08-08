@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Disdik;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dataset;
 use App\Models\DatasetRiwayat;
-use App\Models\Datasets;
-use App\Models\DatasetsHistories;
 use App\Models\Desa;
+use App\Models\DisdikSekolah;
 use App\Models\Kecamatan;
 use App\Models\Sekolah;
 use App\Services\BaseService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
@@ -25,7 +22,7 @@ class SekolahController extends Controller
     protected $kecamatan;
     protected $datasets;
     protected $datasetsHistories;
-    public function __construct(Sekolah $sekolah, Desa $desa, Kecamatan $kecamatan, Dataset $datasets, DatasetRiwayat $datasetsHistories)
+    public function __construct(DisdikSekolah $sekolah, Desa $desa, Kecamatan $kecamatan, Dataset $datasets, DatasetRiwayat $datasetsHistories)
     {
         $this->sekolah = new BaseService($sekolah);
         $this->desa = new BaseService($desa);
@@ -54,7 +51,7 @@ class SekolahController extends Controller
 
         $sheets = Excel::toArray([], $file);
 
-        $dataset = $this->datasets->Query()->where('model_class', Sekolah::class)->first();
+        $dataset = $this->datasets->Query()->where('model_class', DisdikSekolah::class)->first();
 
         $userId = '0023efe1-4733-46d9-83e2-0af09531809c';
         $userNamaOpd = 'Dinas Pendidikan';

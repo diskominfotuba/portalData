@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\DatasetController;
-use App\Http\Controllers\API\SekolahController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\Disdik\SekolahController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
