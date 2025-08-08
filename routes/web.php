@@ -54,7 +54,7 @@ Route::prefix('dataset')->controller(DatasetController::class)->group(function (
 
 Route::get('/login', function () {
     return Socialite::driver('siaptuba')->redirect();
-});
+})->name('login');
 
 Route::get('/callback', function () {
     $user = Socialite::driver('siaptuba')->user();
@@ -75,4 +75,4 @@ Route::get('/callback', function () {
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
-});
+})->name('logout');

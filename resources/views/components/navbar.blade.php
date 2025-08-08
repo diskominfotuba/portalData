@@ -21,6 +21,20 @@
                         class="{{ request()->routeIs('organisasi.index') ? 'active' : '' }}">Organisasi</a></li>
                 <li><a href="{{ route('bantuan.index') }}"
                         class="{{ request()->routeIs('bantuan.index') ? 'active' : '' }}">Bantuan</a></li>
+                <li>
+                    @auth
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="{{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
+                    @endauth
+                </li>
             </ul>
         </nav>
     </div>
