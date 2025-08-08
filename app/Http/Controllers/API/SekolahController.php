@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dataset;
+use App\Models\DatasetRiwayat;
+use App\Models\Datasets;
+use App\Models\DatasetsHistories;
 use App\Models\Desa;
 use App\Models\Kecamatan;
 use App\Models\Sekolah;
 use App\Services\BaseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -18,11 +23,15 @@ class SekolahController extends Controller
     protected $sekolah;
     protected $desa;
     protected $kecamatan;
-    public function __construct(Sekolah $sekolah, Desa $desa, Kecamatan $kecamatan)
+    protected $datasets;
+    protected $datasetsHistories;
+    public function __construct(Sekolah $sekolah, Desa $desa, Kecamatan $kecamatan, Dataset $datasets, DatasetRiwayat $datasetsHistories)
     {
         $this->sekolah = new BaseService($sekolah);
         $this->desa = new BaseService($desa);
         $this->kecamatan = new BaseService($kecamatan);
+        $this->datasets = new BaseService($datasets);
+        $this->datasetsHistories = new BaseService($datasetsHistories);
     }
 
     public function index()
@@ -45,8 +54,40 @@ class SekolahController extends Controller
 
         $sheets = Excel::toArray([], $file);
 
+        $dataset = $this->datasets->Query()->where('model_class', Sekolah::class)->first();
+
+        $userId = '0023efe1-4733-46d9-83e2-0af09531809c';
+        $userNamaOpd = 'Dinas Pendidikan';
+
         $allDesas = $this->desa->Query()->get();
         $allKecamatans = $this->kecamatan->Query()->get();
+
+        // Buat versi baru
+        $latestHistory = $this->datasetsHistories->Query()
+            ->where('dataset_id', $dataset->id)
+            ->where('nama_opd', $userNamaOpd)
+            ->latest()
+            ->first();
+
+        if (!$latestHistory) {
+            $latestVersion = 0;
+        } else {
+            $latestVersion = $latestHistory->versi;
+        }
+
+        if ($latestHistory) {
+            if ($latestHistory->status == 'diajukan' || $latestHistory->status == 'direview' || $latestHistory->status == 'ditolak') {
+                return $this->error('Anda sudah mengajukan versi terbaru. Silakan tunggu verifikasi sebelum mengajukan lagi.');
+            }
+        }
+
+        $newVersion = $this->datasetsHistories->Query()->create([
+            'dataset_id'     => $dataset->id,
+            'nama_opd'         => $userNamaOpd,
+            'uploader_id'    => $userId,
+            'versi'       =>  $latestVersion + 1,
+            'status'         => 'diajukan',
+        ]);
 
         foreach ($sheets as $sheet) {
             if (empty($sheet)) continue;
@@ -74,9 +115,10 @@ class SekolahController extends Controller
                 }
 
                 try {
-                    $this->sekolah->Query()->updateOrCreate(
-                        ['npsn' => $rowData['NPSN']],
+                    $this->sekolah->Query()->create(
                         [
+                            'npsn' => $rowData['NPSN'],
+                            'dataset_riwayat_id' => $newVersion->id,
                             'nama_sekolah'      => $rowData['Nama Satuan Pendidikan'],
                             'bentuk_pendidikan' => $rowData['Bentuk Pendidikan'],
                             'status_sekolah'    => $rowData['Status Sekolah'],
@@ -91,7 +133,7 @@ class SekolahController extends Controller
             }
         }
 
-        return $this->success(null, 'Import berhasil dari semua sheet.');
+        return $this->success(null, 'Import berhasil dan data dikirim untuk diverifikasi.');
     }
 
     // fungsi untuk normalisasi nama desa dan kecamatan

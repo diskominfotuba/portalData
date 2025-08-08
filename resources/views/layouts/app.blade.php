@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satu Data Kabupaten Tulang Bawang - Portal Data</title>
-        <meta name="title" content="Kabupaten Tulang Bawang" />
+    <meta name="title" content="Kabupaten Tulang Bawang" />
     <meta name="description" content="Portal Data kabupaten Tulang Bawang">
 
     <meta itemprop="name" content="Kabupaten Tulang Bawang" />
@@ -17,9 +17,9 @@
     <meta name="twitter:title" content="Kabupaten Tulang Bawang" />
     <meta name="twitter:description" content="Portal Data kabupaten Tulang Bawang" />
     <meta name="twitter:creator" content="@" />
-    
+
     <meta name="twitter:image" content="#" />
-    
+
     <meta name="twitter:image:src" content="#" />
     <meta property="og:title" content="Portal Data Kabupaten Tulang Bawang" />
     <meta property="og:type" content="website" />
@@ -117,7 +117,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: linear-gradient(rgba(22, 160, 133, 0.6), rgba(19, 141, 117, 0.6)),url('../assets/img/bg-pemda.jpg') center/cover;
+            background: linear-gradient(rgba(22, 160, 133, 0.6), rgba(19, 141, 117, 0.6)), url('../assets/img/bg-pemda.jpg') center/cover;
             position: relative;
         }
 
@@ -529,7 +529,8 @@
     <!-- Styles -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     @stack('styles')
 </head>
@@ -578,8 +579,25 @@
         });
     </script>
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript">
+        async function transAjax(data) {
+            html = null;
+            data.headers = {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            await $.ajax(data).done(function(res) {
+                    html = res;
+                })
+                .fail(function() {
+                    return false;
+                })
+            return html
+        }
+    </script>
     @stack('scripts')
 </body>
 

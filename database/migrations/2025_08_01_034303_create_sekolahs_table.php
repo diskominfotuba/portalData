@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('kecamatan_id')->constrained('kecamatans');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->foreignId('dataset_riwayat_id');
             $table->timestamps();
         });
     }

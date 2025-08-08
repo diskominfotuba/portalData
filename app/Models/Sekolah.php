@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sekolah extends Model
 {
-    protected $fillable = ['nama_sekolah', 'npsn', 'bentuk_pendidikan', 'status_sekolah', 'alamat', 'desa_id', 'kecamatan_id', 'latitude', 'longitude'];
+    protected $fillable = ['nama_sekolah', 'npsn', 'bentuk_pendidikan', 'status_sekolah', 'alamat', 'desa_id', 'kecamatan_id', 'latitude', 'longitude', 'dataset_riwayat_id'];
 
     public function desa()
     {

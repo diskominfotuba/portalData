@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DatasetController;
 use App\Http\Controllers\StatistikSektoralController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BantuanController;
@@ -40,4 +41,10 @@ Route::get('/show', function () {
 Route::prefix('statistik-sektoral')->group(function () {
     Route::get('/', [StatistikSektoralController::class, 'index'])->name('statistik.index');
     Route::get('/show', [StatistikSektoralController::class, 'show'])->name('statistik.show');
+});
+
+// Route untuk Dataset
+Route::prefix('dataset')->controller(DatasetController::class)->group(function () {
+    Route::get('/', 'index')->name('dataset.index');
+    Route::get('/{slug}', 'show')->name('dataset.show');
 });
