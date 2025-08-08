@@ -161,286 +161,254 @@
                 </div>
             </div>
         </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-        let map;
-        let markers = [];
-        let infoWindow;
-        let data = [];
-        let defaultLatCenter = -4.493986;
-        let defaultLngCenter = 105.224569;
+    // Deklarasi variabel global untuk peta dan marker
+    let map;
+    let markers = [];
+    let geojsonLayer;
+    // Menyimpan status panel info
+    let infoPanelState = {}; 
 
-        // Inisialisasi Google Maps
-        function initMap() {
-            const center = { lat: defaultLatCenter, lng: defaultLngCenter };
+    // Fungsi untuk membuat dan menginisialisasi peta Leaflet
+    function initMap() {
 
-            map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 12,
-                center: center,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                // *** BAGIAN INI YANG PERLU DITAMBAHKAN ***
-                mapId: 'YOUR_MAP_ID', // <-- GANTI DENGAN MAP ID MILIK ANDA
-                // *** AKHIR BAGIAN YANG DITAMBAHKAN ***
-                styles: [
-                    {
-                        featureType: "poi",
-                        elementType: "labels",
-                        stylers: [{ visibility: "on" }]
-                    }
-                ],
-                zoomControl: true,
-                zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM
-                },
-                mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: false
-            });
+        const defaultLatCenter = -4.493986;
+        const defaultLngCenter = 105.224569;
+        const center = [defaultLatCenter, defaultLngCenter];
 
-            infoWindow = new google.maps.InfoWindow();
+        map = L.map("map", {
+            zoomControl: false,
+        }).setView(center, 12);
 
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "© OpenStreetMap contributors",
+            maxZoom: 19,
+        }).addTo(map);
+
+        L.control.zoom({
+            position: "bottomright",
+        }).addTo(map);
+
+        if (typeof getData === "function") {
             getData();
         }
 
-        // Fungsi untuk mengambil data (disesuaikan dengan kode Anda)
-        async function getData(category = "pemerintahan") {
-            switch (category) {
-                case "pemerintahan":
-                        fetchUrl = await fetch("{{ asset('json/pemerintahan.json') }}");
-                    break;
-                case "pendidikan": 
-                        fetchUrl = await fetch("{{ asset('json/sekolah.json') }}");
-                    break;
-                case "stunting": 
-                        fetchUrl = await fetch("{{ asset('json/tulangbawang.geojson') }}");
-                    break;
-                default:
-                    return alert('Data belum tersedia!');
-                    break;
-            }
-            try {
-                showLoading();
-                const response = fetchUrl;
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const responseData = await response.json();
+        map.on('click', () => {
+            map.closePopup();
+        });
+    }
 
-                data = responseData;
+    // Jalankan fungsi initMap saat halaman dimuat
+    document.addEventListener("DOMContentLoaded", initMap);
 
-                if(category !== 'stunting') {
-                    addMarkersToMapWithCustomUI(data.category);
-                }else{
-                    markers.forEach(marker => marker.marker.map = null);
-                    markers = [];
+    async function getData(category = "pemerintahan") {
+        let fetchUrl;
 
-                    data.features.forEach(feature => {
-                        processFeature(feature);
-                    });
-                };
-
-                hideLoading();
-            } catch (error) {
-                hideLoading();
-                console.error("Error loading data:", error);
-                document.getElementById('location-list').innerHTML = 
-                    '<div class="error">Error memuat data: ' + error.message + '</div>';
-            }
-            updateInfoPanel(data);
+        switch (category) {
+            case "pemerintahan":
+                fetchUrl = "{{ asset('json/pemerintahan.json') }}";
+                break;
+            case "pendidikan":
+                fetchUrl = "{{ asset('json/sekolah.json') }}";
+                break;
+            case "stunting":
+                fetchUrl = "{{ asset('json/tulangbawang.geojson') }}";
+                break;
+            default:
+                alert('Data belum tersedia!');
+                return;
         }
 
-        // Update info panel content based on category
-        function updateInfoPanel(data) {
-            const filterData = document.getElementById("filterData");
-            const infoPanel = document.getElementById("infoPanel");
-            const panelTitle = document.getElementById("panelTitle");
-            const statsContent = document.getElementById("statsContent");
-            const stuntingPanel = document.getElementById("stuntingPanel");
+        try {
+            showLoading();
 
-            if(data.category === 'stunting') {
-                 stuntingPanel.style.display = 'flex';
-            }else {
-                stuntingPanel.style.display = 'none';
-            };
+            const response = await fetch(fetchUrl);
 
-            const icons = {
-                pemerintahan: "fa-regular fa-building",
-                pendidikan: "fas fa-graduation-cap",
-                peternakan: "fas fa-cow", // Consistent icon for info panel
-                pertanian: "fas fa-seedling",
-            };
-
-            panelTitle.innerHTML = `<i class="${icons[data.category]}"></i> ${data.message}`;
-            if (data.category === "pendidikan") {
-  
-                const names = {};
-                data.data.forEach((item) => {
-                    names[item.name] = true;
-                });
-                
-                statsContent.innerHTML = `
-                    <div class="stat-item">
-                        <span>Total Lokasi</span>
-                        <strong>${data.data.length}</strong>
-                    </div>
-                    <div class="stat-item">
-                        <span>SD</span>
-                        <strong>${data.data.filter(item => item.level === 'SD').length}</strong>
-                    </div>
-                    <div class="stat-item">
-                        <span>SMP</span>
-                        <strong>${data.data.filter(item => item.level === 'SMP').length}</strong>
-                    </div>
-                   ${Object.keys(names)
-                    .map(
-                        (name) =>
-                        `
-                        <ul class="list-group list-group">
-                            <li class="list-group-item">${name}</li>
-                        </ul>
-                            `
-                        )
-                    .join("")}`;
-            } else if(data.category === 'pemerintahan') {
-                const names = {};
-                data.data.forEach((item) => {
-                names[item.name] = true;
-                });
-
-                statsContent.innerHTML = `
-                <div class="stat-item">
-                    <span>Total Lokasi</span>
-                    <strong>${data.data.length}</strong>
-                </div>
-                ${Object.keys(names)
-                    .map(
-                    (name) =>
-                     `
-                     <ul class="list-group list-group">
-                        <li class="list-group-item">${name}</li>
-                    </ul>
-                        `
-                    )
-                    .join("")}
-                `;
-            }else {
-                const dataStunting = Object.keys(stuntingData);
-                statsContent.innerHTML = `
-                <div class="stat-item">
-                    <span>Total Lokasi</span>
-                    <strong>${Object.keys(stuntingData).length}</strong>
-                </div>
-                <ul class="list-group">
-                    ${Object.entries(stuntingData)
-                    .map(
-                        ([name, data]) => `
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            ${name}
-                            <span style="color: ${getStuntingColor(data.percentage)}">${data.percentage}%</span>
-                        </li>
-                        `
-                    )
-                    .join("")}
-                </ul>
-                `;
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            infoPanel.classList.add("show"); 
+            const responseData = await response.json();
+            const categoryData = category === 'stunting' ? responseData : responseData.data;
 
+            clearMap();
+
+            if (category !== 'stunting') {
+                addMarkersToMapWithCustomUI(categoryData, category);
+            } else {
+                processGeoJSON(responseData);
+            }
+
+            hideLoading();
+            updateInfoPanel(responseData, category);
+        } catch (error) {
+            hideLoading();
+            console.error("Error loading data:", error);
+            document.getElementById('statsContent').innerHTML = 
+                '<div class="error">Error memuat data: ' + error.message + '</div>';
         }
+    }
 
-        // Filter markers by category
-        function filterCategory(category) {
-            getData(category);
+    // Fungsi untuk membersihkan peta dari marker dan layer GeoJSON
+    function clearMap() {
+        markers.forEach(markerObj => {
+            map.removeLayer(markerObj.marker);
+        });
+        markers = [];
+        
+        if (geojsonLayer) {
+            map.removeLayer(geojsonLayer);
         }
+    }
 
-       function getSVGIcon(category) {
+    // Fungsi untuk memperbarui panel informasi di sidebar
+    function updateInfoPanel(data, category) {
+        const infoPanel = document.getElementById("infoPanel");
+        const panelTitle = document.getElementById("panelTitle");
+        const statsContent = document.getElementById("statsContent");
+        const stuntingPanel = document.getElementById("stuntingPanel");
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.category === category);
+        });
+
+        stuntingPanel.style.display = (category === 'stunting') ? 'flex' : 'none';
+
         const icons = {
-            'pendidikan': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="marker-icon-svg">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-            </svg>`,
-            'pemerintahan': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="marker-icon-svg">
-                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path>
-                <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path>
-                <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path>
-                <path d="M10 6h4"></path>
-                <path d="M10 10h4"></path>
-                <path d="M10 14h4"></path>
-                <path d="M10 18h4"></path>
-            </svg>`,
-            'peternakan': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="marker-icon-svg">
-                <path d="M18 6L6 18"></path>
-                <path d="M6 6h.01"></path>
-                <path d="M18 6h.01"></path>
-                <path d="M20 4L8.12 15.88"></path>
-                <path d="M14.47 14.48L20 20"></path>
-                <path d="M8.12 8.12L12 12"></path>
-            </svg>`,
-            'pertanian': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="marker-icon-svg">
-                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"></path>
-                <path d="M12 12L13 18L15 14L18 15L14 12L18 9L15 10L13 6L12 12Z"></path>
-            </svg>`
+            pemerintahan: "fa-regular fa-building",
+            pendidikan: "fas fa-graduation-cap",
+            stunting: "fas fa-heartbeat"
+        };
+
+        panelTitle.innerHTML = `<i class="${icons[category] || ''}"></i> ${data.message || ''}`;
+
+        if (category === "pendidikan" || category === "pemerintahan") {
+            const names = {};
+            (data.data || []).forEach(item => {
+                names[item.name] = true;
+            });
+
+            statsContent.innerHTML = `
+                <div class="stat-item">
+                    <span>Total Lokasi</span>
+                    <strong>${data.data ? data.data.length : 0}</strong>
+                </div>
+                ${Object.keys(names).map(name => `
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item" style="border: 1px solid #ddd; border-radius: 5px;">${name}</li>
+                    </ul>
+                `).join('')}
+            `;
+        } else if (category === 'stunting') {
+            const stuntingDataFromResponse = data.stuntingData || stuntingData; 
+            statsContent.innerHTML = `
+                <div class="stat-item">
+                    <span>Total Lokasi</span>
+                    <strong>${Object.keys(stuntingDataFromResponse).length}</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    ${Object.entries(stuntingDataFromResponse).map(([name, val]) => `
+                        <li class="list-group-item d-flex justify-content-between align-items-center mt-2" style="border: 1px solid #ddd; border-radius: 5px;">
+                            ${name}
+                            <span style="color: ${getStuntingColor(val.percentage)}">${val.percentage}%</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
+        } else {
+            statsContent.innerHTML = '<div class="stat-item">Data tidak tersedia</div>';
+        }
+        infoPanel.classList.add("show");
+    }
+
+    // Fungsi untuk mengganti kategori data
+    function filterCategory(category) {
+        getData(category);
+    }
+
+    // Fungsi untuk membuat elemen HTML SVG sebagai ikon
+    function getSVGIcon(category) {
+        const icons = {
+            'pendidikan': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="marker-icon-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
+            'pemerintahan': `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="marker-icon-svg"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"></path><path d="M10 6h4"></path><path d="M10 10h4"></path><path d="M10 14h4"></path><path d="M10 18h4"></path></svg>`,
         };
         return icons[category] || icons['pendidikan'];
     }
 
-    // Function to create custom marker element seperti contoh
-    function createCustomMarkerElement(location, category = 'pendidikan') {
+    // Fungsi untuk membuat DivIcon kustom Leaflet
+    function createCustomDivIcon(category) {
+        return L.divIcon({
+            className: '',
+            html: createCustomMarkerElement(category).outerHTML,
+            iconSize: [36, 54],
+            iconAnchor: [18, 54],
+            popupAnchor: [0, -54],
+        });
+    }
+
+    // Fungsi untuk membuat elemen HTML marker kustom
+    function createCustomMarkerElement(category = 'pendidikan') {
         const markerDiv = document.createElement('div');
         markerDiv.className = `custom-marker-icon marker-${category}`;
         markerDiv.style.cssText = `
-            margin-left: -18px; 
-            margin-top: -54px; 
-            width: 36px; 
+            margin-left: -18px;
+            margin-top: -54px;
+            width: 36px;
             height: 54px;
+            position: relative;
+            background: transparent;
+            border: none;
         `;
-        
         markerDiv.innerHTML = `
-            <div style="position: relative; width: 36px; height: 54px; background: transparent; border: none;">
-                <!-- Shadow -->
-                <div class="marker-shadow"></div>
-                
-                <!-- Tail outline (putih) -->
-                <div class="marker-tail-outline"></div>
-                
-                <!-- Tail berwarna -->
-                <div class="marker-tail"></div>
-                
-                <!-- Circle utama dengan icon -->
-                <div class="marker-circle">
-                    ${getSVGIcon(category)}
-                </div>
+            <div class="marker-shadow"></div>
+            <div class="marker-tail-outline"></div>
+            <div class="marker-tail"></div>
+            <div class="marker-circle">
+                ${getSVGIcon(category)}
             </div>
         `;
-        
         return markerDiv;
     }
 
-    // Enhanced info window content
-    function createEnhancedInfoContent(location, category = 'pendidikan') {
-        const categoryNames = {
-            'pendidikan': 'Pendidikan',
-            'pemerintahan': 'Pemerintahan',
-            'peternakan': 'Peternakan',
-            'pertanian': 'Pertanian'
-        };
-        
-        const categoryColors = {
-            'pendidikan': 'linear-gradient(135deg, #1e40af 0%, #3730a3 100%)',
-            'pemerintahan': 'linear-gradient(135deg, #059669 0%, #047857 100%)',
-            'peternakan': 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
-            'pertanian': 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)'
-        };
-        
+    // Fungsi untuk membuat konten popup dengan ikon yang dinamis
+    const popupIcons = {
+        pemerintahan: "fa-regular fa-building",
+        pendidikan: "fas fa-graduation-cap",
+        stunting: "fas fa-heartbeat"
+    };
+
+    function createEnhancedInfoContent(location, category) {
+        const iconClass = popupIcons[category] || popupIcons.pemerintahan;
+        let details = '';
+
+        // Tambahkan detail spesifik untuk kategori pendidikan
+        if (category === 'pendidikan') {
+            details = `
+                ${location.npsn ? `<p  style="margin: 0; line-height: 1.8;"><strong>🔢 NPSN:</strong> ${location.npsn}</p>` : ''}
+                ${location.level ? `<p  style="margin: 0; line-height: 1.8;"><strong>🎓 Tingkat:</strong> ${location.level}</p>` : ''}
+                ${location.status ? `<p  style="margin: 0; line-height: 1.8;"><strong>📜 Status:</strong> ${location.status}</p>` : ''}
+                ${location.kelurahan ? `<p  style="margin: 0; line-height: 1.8;"><strong>🏘️ Kelurahan:</strong> ${location.kelurahan}</p>` : ''}
+                ${location.alamat ? `<p  style="margin: 0; line-height: 1.8;"><strong>📍 Alamat:</strong> ${location.alamat}</p>` : ''}
+            `;
+        } else {
+            // Tampilkan detail umum untuk kategori lain
+            details = `
+                ${location.alamat ? `<p><strong>📍 Alamat:</strong> ${location.alamat}</p>` : 'Alamat belum di set'}
+            `;
+        }
+
         return `
             <div style="max-width: 350px; font-family: Arial, sans-serif;">
                 <h5 style="margin: 0 0 10px 0; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px;">
-                    <i class="fa-regular fa-building"></i> ${location.name || 'Kecamatan Tidak Diketahui'}
+                    <i class="${iconClass}"></i> ${location.name || 'Lokasi Tidak Diketahui'}
                 </h5>
                 <div style="line-height: 1.6;">
-                    ${location.address ? `<p><strong>🏘️ Alamat:</strong> ${location.address}</p>` : 'Belum di set'}
+                    ${details}
                     <hr style="margin: 10px 0; border: 1px solid #ecf0f1;">
                     <p style="font-size: 12px; color: #7f8c8d; margin: 5px 0 0 0;">
                         Klik pada peta untuk menutup info ini
@@ -450,65 +418,47 @@
         `;
     }
 
-            // Function to add pulse effect to active marker
-        // Function to add pulse effect to active marker
+    // Fungsi untuk menambahkan efek pulse pada marker
     function addPulseEffect(markerId) {
-        // Remove pulse from all markers
         markers.forEach(markerObj => {
-            const markerElement = markerObj.marker.content;
-            if (markerElement) {
-                markerElement.querySelector('.marker-pin').classList.remove('marker-pulse');
+            const markerEl = markerObj.marker.getElement();
+            if (markerEl) {
+                const pin = markerEl.querySelector('.marker-tail'); 
+                if (pin) pin.classList.remove('marker-pulse');
             }
         });
 
-        // Add pulse to selected marker
         const activeMarker = markers.find(m => m.id === markerId);
-        if (activeMarker && activeMarker.marker.content) {
-            const markerElement = activeMarker.marker.content;
-            markerElement.querySelector('.marker-pin').classList.add('marker-pulse');
+        if (activeMarker) {
+            const markerEl = activeMarker.marker.getElement();
+            if (markerEl) {
+                const pin = markerEl.querySelector('.marker-tail');
+                if (pin) pin.classList.add('marker-pulse');
+            }
         }
     }
 
-    // Replace your existing addMarkersToMap function with this enhanced version
-    function addMarkersToMapWithCustomUI(category) {
-        // Clear existing markers
-        markers.forEach(marker => marker.marker.map = null);
-        markers = [];
+    // Fungsi untuk menambahkan marker ke peta dari data
+    function addMarkersToMapWithCustomUI(data, category) {
+        const bounds = L.latLngBounds();
 
-        const bounds = new google.maps.LatLngBounds();
+        data.forEach(location => {
+            const position = [parseFloat(location.lat), parseFloat(location.lng)];
+            const icon = createCustomDivIcon(category);
+            const marker = L.marker(position, {
+                icon: icon,
+                title: location.name
+            }).addTo(map);
 
-        data.data.forEach(location => {
-            const position = {
-                lat: parseFloat(location.lat),
-                lng: parseFloat(location.lng)
-            };
+            const infoContent = createEnhancedInfoContent(location, category);
+            marker.bindPopup(infoContent);
 
-            // Create custom marker element
-            const markerElement = createCustomMarkerElement(location, category);
-
-            // Create advanced marker with custom element
-            const marker = new google.maps.marker.AdvancedMarkerElement({
-                position: position,
-                map: map,
-                title: location.name,
-                content: markerElement
-            });
-
-            // Enhanced info window content
-            const infoContent = createEnhancedInfoContent(location, 'pendidikan');
-
-            // Add click listener with enhanced animations
-            marker.addListener('click', () => {
-                infoWindow.setContent(infoContent);
-                infoWindow.open(map, marker);
-                // highlightLocation(location.id);
+            marker.on('click', () => {
                 addPulseEffect(location.id);
-
-                // Smooth zoom to marker
-                map.panTo(position);
-                if (map.getZoom() < 15) {
-                    map.setZoom(15);
-                }
+                // map.panTo(position);
+                // if (map.getZoom() < 15) {
+                //     map.setZoom(15);
+                // }
             });
 
             markers.push({
@@ -520,218 +470,115 @@
             bounds.extend(position);
         });
 
-        // Fit map to show all markers
-        if (data.length > 0) {
+        if (bounds.isValid()) {
             map.fitBounds(bounds);
         }
     }
 
-    // Function to update markers based on category
-    function updateMarkersForCategory(category) {
-        markers.forEach(markerObj => {
-            const markerElement = markerObj.marker.getContent();
-            if (markerElement) {
-                const pinElement = markerElement.querySelector('.marker-pin');
-                const iconElement = markerElement.querySelector('.marker-icon');
-                
-                // Update pin color
-                pinElement.className = `marker-pin marker-${category}`;
-                
-                // Update icon
-                iconElement.className = `marker-icon ${getCategoryIcon(category)}`;
+    // Fungsi untuk memproses fitur GeoJSON
+    function processGeoJSON(data) {
+        geojsonLayer = L.geoJSON(data, {
+            style: function(feature) {
+                const properties = feature.properties;
+                const districtName = properties.district;
+                const stuntingInfo = stuntingData[districtName];
+                let polygonColor = '#95A5A6';
+                if (stuntingInfo) {
+                    polygonColor = getStuntingColor(stuntingInfo.percentage);
+                }
+                return {
+                    color: '#FFFFFF',
+                    weight: 1.5,
+                    fillColor: polygonColor,
+                    fillOpacity: 0.7,
+                };
+            },
+            onEachFeature: function(feature, layer) {
+                const properties = feature.properties;
+                const districtName = properties.district;
+                const stuntingInfo = stuntingData[districtName];
+                const infoContent = createGeoJSONInfoContent(properties, stuntingInfo);
+
+                layer.bindPopup(infoContent);
             }
-        });
+        }).addTo(map);
+        map.fitBounds(geojsonLayer.getBounds());
     }
 
-    // Focus ke lokasi tertentu
-    function focusLocation(id) {
-        const markerObj = markers.find(m => m.id === id);
-        if (markerObj) {
-            map.setCenter(markerObj.marker.getPosition());
-            map.setZoom(16);
-            
-            // Trigger click on marker
-            google.maps.event.trigger(markerObj.marker, 'click');
-            
-            highlightLocation(id);
-        }
+    // Fungsi untuk membuat konten popup GeoJSON
+    function createGeoJSONInfoContent(properties, stuntingInfo) {
+        const stuntingDisplay = stuntingInfo ? `
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                <h4 style="margin: 0 0 8px 0; color: #e74c3c;">📊 Data Stunting</h4>
+                <p style="margin: 3px 0;"><strong>Persentase Stunting:</strong> <span style="color: ${getStuntingColor(stuntingInfo.percentage)}; font-weight: bold; font-size: 16px;">${stuntingInfo.percentage}%</span></p>
+                <p style="margin: 3px 0;"><strong>Kategori:</strong> <span style="color: ${getStuntingColor(stuntingInfo.percentage)}; font-weight: bold;">${getStuntingCategory(stuntingInfo.percentage)}</span></p>
+            </div>
+        ` : `
+            <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                <p style="margin: 0; color: #856404;"><strong>⚠️ Data stunting tidak tersedia untuk kecamatan ini</strong></p>
+            </div>
+        `;
+
+        return `
+            <div style="max-width: 350px; font-family: Arial, sans-serif;">
+                <h3 style="margin: 0 0 10px 0; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px;">
+                    🏛️ ${properties.district || 'Kecamatan Tidak Diketahui'}
+                </h3>
+                ${stuntingDisplay}
+            </div>
+        `;
     }
 
-    // Highlight lokasi di sidebar
-    function highlightLocation(id) {
-        // Remove active class from all items
-        document.querySelectorAll('.location-item').forEach(item => {
-            item.classList.remove('active');
-        });
-        
-        // Add active class to selected item
-        const items = document.querySelectorAll('.location-item');
-        const index = data.findIndex(loc => loc.id === id);
-        if (index >= 0 && items[index]) {
-            items[index].classList.add('active');
-        }
-    }
-
-    //proses data geojson
+    // Data stunting yang disiapkan (seperti di kode Google Maps)
     const stuntingData = {
-            "Banjar Margo": { percentage: 12.53, cases: 307, target: 2450, category: "Sedang" },
-            "Rawa Pitu": { percentage: 9.26, cases: 121, target: 1306, category: "Rendah" },
-            "Menggala Timur": { percentage: 7.22, cases: 73, target: 1011, category: "Rendah" },
-            "Dente Teladas": { percentage: 7.18, cases: 186, target: 2590, category: "Rendah" },
-            "Penawar Aji": { percentage: 6.66, cases: 89, target: 1337, category: "Rendah" },
-            "Penawar Tama": { percentage: 6.61, cases: 117, target: 1769, category: "Rendah" },
-            "Menggala": { percentage: 6.17, cases: 164, target: 2659, category: "Rendah" },
-            "Gedung Aji Baru": { percentage: 5.40, cases: 103, target: 1906, category: "Rendah" },
-            "Banjar Agung": { percentage: 5.22, cases: 125, target: 2395, category: "Rendah" },
-            "Gedung Aji": { percentage: 4.70, cases: 46, target: 978, category: "Rendah" },
-            "Meraksa Aji": { percentage: 3.23, cases: 38, target: 1175, category: "Rendah" },
-            "Gedung Meneng": { percentage: 3.14, cases: 63, target: 2006, category: "Rendah" },
-            "Rawajitu Selatan": { percentage: 2.58, cases: 54, target: 2094, category: "Rendah" },
-            "Rawajitu Timur": { percentage: 2.52, cases: 18, target: 715, category: "Rendah" },
-            "Banjar Baru": { percentage: 0.10, cases: 1, target: 978, category: "Rendah" }
-        };
+        "Banjar Margo": { percentage: 12.53, cases: 307, target: 2450, category: "Sedang" },
+        "Rawa Pitu": { percentage: 9.26, cases: 121, target: 1306, category: "Rendah" },
+        "Menggala Timur": { percentage: 7.22, cases: 73, target: 1011, category: "Rendah" },
+        "Dente Teladas": { percentage: 7.18, cases: 186, target: 2590, category: "Rendah" },
+        "Penawar Aji": { percentage: 6.66, cases: 89, target: 1337, category: "Rendah" },
+        "Penawar Tama": { percentage: 6.61, cases: 117, target: 1769, category: "Rendah" },
+        "Menggala": { percentage: 6.17, cases: 164, target: 2659, category: "Rendah" },
+        "Gedung Aji Baru": { percentage: 5.40, cases: 103, target: 1906, category: "Rendah" },
+        "Banjar Agung": { percentage: 5.22, cases: 125, target: 2395, category: "Rendah" },
+        "Gedung Aji": { percentage: 4.70, cases: 46, target: 978, category: "Rendah" },
+        "Meraksa Aji": { percentage: 3.23, cases: 38, target: 1175, category: "Rendah" },
+        "Gedung Meneng": { percentage: 3.14, cases: 63, target: 2006, category: "Rendah" },
+        "Rawajitu Selatan": { percentage: 2.58, cases: 54, target: 2094, category: "Rendah" },
+        "Rawajitu Timur": { percentage: 2.52, cases: 18, target: 715, category: "Rendah" },
+        "Banjar Baru": { percentage: 0.10, cases: 1, target: 978, category: "Rendah" }
+    };
 
-        // Fungsi untuk mendapatkan warna berdasarkan persentase stunting
-        function getStuntingColor(percentage) {
-            if (percentage >= 20) return '#E74C3C';      // Merah - Tinggi
-            if (percentage >= 10) return '#F39C12';      // Orange - Sedang
-            if (percentage >= 5) return '#F1C40F';       // Kuning - Rendah-Sedang
-            if (percentage > 0) return '#2ECC71';        // Hijau - Rendah
-            return '#95A5A6';                            // Abu-abu - Tidak ada data
-        }
 
-        // Fungsi untuk mendapatkan kategori stunting
-        function getStuntingCategory(percentage) {
-            if (percentage >= 20) return 'Tinggi';
-            if (percentage >= 10) return 'Sedang';
-            if (percentage >= 5) return 'Rendah-Sedang';
-            if (percentage > 0) return 'Rendah';
-            return 'Tidak Ada Data';
-        }
-
-    function processFeature(feature) {
-            const geometry = feature.geometry;
-            const properties = feature.properties;
-
-            if (geometry.type === 'MultiPolygon') {
-                geometry.coordinates.forEach(polygonCoords => {
-                    createPolygon(polygonCoords[0], properties);
-                });
-            } else if (geometry.type === 'Polygon') {
-                createPolygon(geometry.coordinates[0], properties);
-            }
-        }
-
-        function createPolygon(coordinates, properties) {
-            // Konversi koordinat untuk Google Maps
-            const path = coordinates.map(coord => ({
-                lat: coord[1],
-                lng: coord[0]
-            }));
-
-            // Dapatkan data stunting untuk kecamatan ini
-            const districtName = properties.district;
-            const stuntingInfo = stuntingData[districtName];
-            
-            // Tentukan warna berdasarkan data stunting
-            let polygonColor = '#95A5A6'; // Default abu-abu
-            if (stuntingInfo) {
-                polygonColor = getStuntingColor(stuntingInfo.percentage);
-            }
-
-            const polygon = new google.maps.Polygon({
-                paths: path,
-                strokeColor: '#FFFFFF',
-                strokeOpacity: 0.9,
-                strokeWeight: 1.5,
-                fillColor: polygonColor,
-                fillOpacity: 0.7,
-                map: map
-            });
-
-            // Info content untuk InfoWindow (detail desa/kelurahan dengan data stunting)
-            const stuntingDisplay = stuntingInfo ? `
-                <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">
-                    <h4 style="margin: 0 0 8px 0; color: #e74c3c;">📊 Data Stunting</h4>
-                    <p style="margin: 3px 0;"><strong>Persentase Stunting:</strong> <span style="color: ${polygonColor}; font-weight: bold; font-size: 16px;">${stuntingInfo.percentage}%</span></p>
-                    <p style="margin: 3px 0;"><strong>Kategori:</strong> <span style="color: ${polygonColor}; font-weight: bold;">${getStuntingCategory(stuntingInfo.percentage)}</span></p>
-                    <p style="margin: 3px 0;"><strong>Kasus Stunting:</strong> ${stuntingInfo.cases} anak</p>
-                    <p style="margin: 3px 0;"><strong>Target Balita:</strong> ${stuntingInfo.target} anak</p>
-                    <p style="margin: 3px 0;"><strong>Rasio:</strong> ${stuntingInfo.cases}/${stuntingInfo.target}</p>
-                </div>
-            ` : `
-                <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0;">
-                    <p style="margin: 0; color: #856404;"><strong>⚠️ Data stunting tidak tersedia untuk desa ini</strong></p>
-                </div>
-            `;
-
-            const infoContent = `
-                <div style="max-width: 350px; font-family: Arial, sans-serif;">
-                    <h3 style="margin: 0 0 10px 0; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px;">
-                        🏛️ ${properties.district || 'Kecamatan Tidak Diketahui'}
-                    </h3>
-                    ${stuntingDisplay}
-                    <div style="line-height: 1.6;">
-                        ${properties.village ? `<p><strong>🏘️ Desa/Kelurahan:</strong> ${properties.village}</p>` : ''}
-                        ${properties.regency ? `<p><strong>🏙️ Kabupaten:</strong> ${properties.regency}</p>` : ''}
-                        ${properties.province ? `<p><strong>🗺️ Provinsi:</strong> ${properties.province}</p>` : ''}
-                        ${properties.district_code ? `<p><strong>🔢 Kode Kecamatan:</strong> ${properties.district_code}</p>` : ''}
-                        ${properties.village_code ? `<p><strong>🔢 Kode Desa:</strong> ${properties.village_code}</p>` : ''}
-                        ${properties.source ? `<p><strong>📊 Sumber:</strong> ${properties.source}</p>` : ''}
-                        ${properties.date ? `<p><strong>📅 Tanggal Data:</strong> ${new Date(properties.date).toLocaleDateString('id-ID')}</p>` : ''}
-                        <hr style="margin: 10px 0; border: 1px solid #ecf0f1;">
-                        <p style="font-size: 12px; color: #7f8c8d; margin: 5px 0 0 0;">
-                            Klik pada peta untuk menutup info ini
-                        </p>
-                    </div>
-                </div>
-            `;
-
-        }
-
-    function closePanel()
-    {
-        const stuntingPanel = document.getElementById("stuntingPanel");
-        stuntingPanel.style.display = 'none';
+    // Fungsi untuk mendapatkan warna berdasarkan persentase stunting
+    function getStuntingColor(percentage) {
+        if (percentage >= 20) return '#E74C3C';
+        if (percentage >= 10) return '#F39C12';
+        if (percentage >= 5) return '#F1C40F';
+        if (percentage > 0) return '#2ECC71';
+        return '#95A5A6';
     }
-    // Event listener untuk jQuery ready (jika ingin tetap menggunakan jQuery)
-    $(document).ready(function() {
-        console.log("Document ready");
-    });
 
-    // Show loading indicator
+    // Fungsi untuk mendapatkan kategori stunting
+    function getStuntingCategory(percentage) {
+        if (percentage >= 20) return 'Tinggi';
+        if (percentage >= 10) return 'Sedang';
+        if (percentage >= 5) return 'Rendah-Sedang';
+        if (percentage > 0) return 'Rendah';
+        return 'Tidak Ada Data';
+    }
+
+    // Fungsi untuk menampilkan loading spinner
     function showLoading() {
         const loadingElement = document.getElementById("loading");
-        if (loadingElement) {
-            loadingElement.style.display = "block";
-        }
+        if (loadingElement) loadingElement.style.display = "block";
     }
 
-    // Hide loading indicator
+    // Fungsi untuk menyembunyikan loading spinner
     function hideLoading() {
         const loadingElement = document.getElementById("loading");
-        if (loadingElement) {
-            loadingElement.style.display = "none";
-        }
+        if (loadingElement) loadingElement.style.display = "none";
     }
-
-    // Event listener untuk menutup InfoWindow saat klik pada peta
-    function setupMapClickListener() {
-        map.addListener('click', () => {
-            infoWindow.close();
-        });
-    }
-
-    // // Panggil setupMapClickListener setelah peta diinisialisasi
-    window.addEventListener('load', () => {
-        setTimeout(setupMapClickListener, 1000);
-    });
 </script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1ciH1POERPcBC50HdxVN3h1Ts2bIWSOQ&callback=initMap&&libraries=marker&v=beta"
-    async
-    defer
-></script>
-    </body>
+</body>
 </html>
 
