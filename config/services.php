@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'siaptuba' => [
+        'client_id' => env('SIAPTUBA_CLIENT_ID'),
+        'client_secret' => env('SIAPTUBA_CLIENT_SECRET'),
+        'redirect' => env('SIAPTUBA_REDIRECT_URI'),
+        'base_uri' => env('SIAPTUBA_BASE_URI', 'https://siaptuba-web.tulangbawangkab.go.id'),
+    ],
+
 ];

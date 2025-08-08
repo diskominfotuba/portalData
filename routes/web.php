@@ -7,6 +7,9 @@ use App\Http\Controllers\BantuanController;
 use App\Http\Controllers\SearchDatasetController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\Monitoring\DashboardController;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 // Route untuk Dashboard Monitoring
 Route::get('/dashboard-monitoring', [DashboardController::class, 'index'])->name('dashboard-monitoring.index');
@@ -47,4 +50,29 @@ Route::prefix('statistik-sektoral')->group(function () {
 Route::prefix('dataset')->controller(DatasetController::class)->group(function () {
     Route::get('/', 'index')->name('dataset.index');
     Route::get('/{slug}', 'show')->name('dataset.show');
+});
+
+Route::get('/login', function () {
+    return Socialite::driver('siaptuba')->redirect();
+});
+
+Route::get('/callback', function () {
+    $user = Socialite::driver('siaptuba')->user();
+
+    // Cek user atau login otomatis
+    $localUser = \App\Models\User::firstOrCreate(
+        ['email' => $user->getEmail()],
+        [
+            'name' => $user->getName(),
+            'password' => bcrypt(Str::random(40)),
+        ]
+    );
+
+    Auth::login($localUser);
+    return redirect('/');
+});
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
 });
